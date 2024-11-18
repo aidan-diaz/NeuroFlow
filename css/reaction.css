@@ -1,0 +1,153 @@
+/******************************************
+/* CSS
+/*******************************************/
+
+/* Box Model Hack */
+*{
+  box-sizing: border-box;
+}
+
+/******************************************
+/* FONTS
+/*******************************************/
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+h2 {
+  font-size: 3.2rem;
+}
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+  
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+header,
+ul {
+  display: flex;
+  justify-content: center;
+}
+
+ul {
+  width: 90%;
+  gap: 40px;
+  justify-content: flex-end;
+}
+
+.game, .gameContainer, .scoreBoard, div, .goodButton, footer {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-around;
+}
+.game {
+  gap: 20px;
+  justify-content: center;
+  max-width: 640px;
+}
+header, .scoreBoard {
+  height: 100px;
+  line-height: 100px;
+}
+
+header {
+  height: 100px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+h1 {
+  width: 100%;
+  text-align: center;
+}
+
+div {
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 50%;
+  height: 100px;
+  max-width: 100px;
+  min-width: 100px;
+  flex: 0 0 15%;
+  background: radial-gradient(circle, #0D446C, #167DC6);
+  background-size: contain;
+}
+div:hover {
+  cursor: crosshair;
+}
+
+.goodButton, .game{
+  padding-top: 10px;
+}
+.goodButton button {
+  padding: 10px;
+  background: grey;
+  border: 2px solid black;
+  color: whitesmoke;
+}
+button:hover {
+  color: blue;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px red;
+}
+
+footer {
+  margin-top: 20px;
+}
+
+/* Define the flip animation */
+@keyframes flip {
+  from {
+    transform: rotateY(0deg);
+    background: radial-gradient(circle, #0D446C, #167DC6);
+  }
+  to {
+    transform: rotateY(180deg);
+    background: red;
+  }
+}
+
+/* Apply the flip animation to the target element */
+.target.flipped {
+  animation: flip 0.25s linear;
+  transform-style: preserve-3d;
+}
+
+/* MEDIA QUERIES
+  */
+
+@media screen and (max-width: 580px) {
+  div {
+  max-width: 55px;
+  min-width: 55px;
+  height: 55px;
+  }
+  .scoreBoard, h2 {
+    display: block;
+    width: 100%;
+    line-height: 30px;
+  }
+}
+
+/******************************************
+/* ADDITIONAL STYLES
+/*******************************************/
+
+body {
+  background-color: #e7f2f8;
+}
+
+header {
+  background-color: #9bccfd;
+}

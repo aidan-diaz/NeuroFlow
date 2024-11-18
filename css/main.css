@@ -1,0 +1,94 @@
+/******************************************
+/* CSS
+/*******************************************/
+
+/* Box Model Hack */
+*{
+  box-sizing: border-box;
+}
+
+/******************************************
+/* FONTS
+/*******************************************/
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+header,
+ul {
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  width: 100vw;
+  height: 100px;
+}
+
+ul {
+  width: 90%;
+  justify-content: flex-end;
+}
+
+body,
+.signInFormSection,
+.signInForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  gap: 40px;
+}
+
+.signInFormSection {
+  width: 50%;
+  height: 600px;
+  background-color: #9bccfd;
+  border: 1px solid #9bccfd;
+  border-radius: 2%;
+}
+
+.loginBtns {
+  width: 100px;
+  height: 50px;
+}
+
+/* MEDIA QUERIES */
+
+
+
+/******************************************
+/* ADDITIONAL STYLES
+/*******************************************/
+body {
+  background-color: #e7f2f8;
+}
+
+header {
+  background-color: #9bccfd;
+}
+
+h1 {
+  font-size: 4rem;
+  font-weight: bold;
+}
