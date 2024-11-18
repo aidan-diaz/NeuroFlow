@@ -1,3 +1,5 @@
+STARTER API CONCEPT
+
 POST REQUEST
 allow users to create profile, possibly create training plan, set learning goal
 
