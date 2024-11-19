@@ -12,16 +12,22 @@
 		<link rel="stylesheet" href="css/reaction.css">
 	</head>
 	<body>
-		
 		<main>
 			<header>
 				<ul>
-					<li><a href="index.html">Back to Home Page</a></li>
-					<li><a href="profile.html">Back to Profile</a></li>
+					<li><a href="/profile">Back to Profile</a></li>
+                    <li><a href="/logout">Logout</a></li>
 				</ul>
 			</header>
 			<section class="scoreBoard">
-			  <h2>High Score: <span id="highScore">0</span></h2>
+                <% for(var i=0; i<scores.length; i++) {%>
+                    <h2>High Score: <span id="highScore">
+                            <%= scores[i].reactionGameScore %>
+                        </span></h2>
+                    <% } %>
+                <% if(!scores.length) {%>
+                    <h2>High Score: <span id="highScore">0</span></h2>
+                <% } %>
 			  <h2 class="counter">Current Score: <span id="count">0</span></h2>
 			  <h2 class="timer">Time Left: <span class="sec" id="clock">60</span></h2>
 			  
@@ -59,8 +65,6 @@
 			  <button type="button" id="startGame">START</button>
 			</section>
 		  </main>
-		  <footer>
-		  </footer>
-		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="js/reaction.js"></script>
 	</body>
 </html>
