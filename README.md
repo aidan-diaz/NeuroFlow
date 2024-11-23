@@ -1,20 +1,15 @@
-STARTER API CONCEPT
+# NeuroFlow
 
-POST REQUEST
-allow users to create profile, possibly create training plan, set learning goal
+![Thumbnail](public/css/img/thumbnail.png)
 
-
-
-GET REQUEST
-render user info along with test scores, profile, etc (charts with scores)
+Link to project: (https://web-production-b2aeb.up.railway.app/) (WORK IN PROGRESS)
 
 
+## How It's Made:
+Tech used: EJS, CSS, JS, passport, Node.js
 
-PUT REQUEST
-update account info, change answers to some tests before submitting, toggle dark mode
-example: user goes through reaction test - when test ends, user's previous high score is updated with new high score (only if new score exceeds current high score)
+NeuroFlow is a full-stack web application that empowers users to improve and maintain their cognitive health through engaging tests and a personalized progress-tracking profile chart.
 
 
 
-DELETE REQUEST
-delete account, delete training plan
+
