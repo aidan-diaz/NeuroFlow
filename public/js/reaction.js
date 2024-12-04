@@ -23,11 +23,10 @@
       document.querySelector('.timer').style.color = 'red'
       document.querySelector('#startGame').style.display = 'block'
       document.querySelector('#startGame').innerText = 'TEST AGAIN'
+      addNewReactionGameScore(scoreElement)
+      updateHighScore(highScoreValue)
       scoreElement.innerText = 0
       countdown = 60
-      //REPLACE CONSOLE LOG WITH FETCH REQUEST
-      // console.log(highScoreValue)
-      updateUserScore(highScoreValue)
     } 
     
   }, 1000);
@@ -75,12 +74,12 @@
     }
   }
 
-  function updateUserScore(highScoreValue) {
-    fetch('updateReactionGameScore', {
+  function addNewReactionGameScore(scoreElement) {
+    fetch('/tests/addNewReactionGameScore', {
       method: 'put',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        reactionGameScore: parseFloat(highScoreValue)
+        newScore: parseFloat(scoreElement.innerText)
       })
     })
     .then(response => {
@@ -92,75 +91,20 @@
     })
   }
 
+  function updateHighScore(highScoreValue) {
+    fetch('/tests/updateReactionTestHighScore', {
+      method: 'put',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        highScore: parseFloat(highScoreValue)
+      })
+    })
+    .then(response => {
+      if (response.ok) return response.json()
+    })
+    .then(data => {
+      console.log(data)
+      window.location.reload(true)
+    })
+  }
 
-
-//   var thumbUp = document.getElementsByClassName("fa-thumbs-up");
-// var thumbDown = document.getElementsByClassName("fa-thumbs-down");
-// var trash = document.getElementsByClassName("fa-trash-o");
-
-// Array.from(thumbUp).forEach(function(element) {
-//       element.addEventListener('click', function(){
-//         const name = this.parentNode.parentNode.childNodes[1].innerText
-//         const msg = this.parentNode.parentNode.childNodes[3].innerText
-//         const thumbUp = parseFloat(this.parentNode.parentNode.childNodes[5].innerText)
-//         fetch('messagesUp', {
-//           method: 'put',
-//           headers: {'Content-Type': 'application/json'},
-//           body: JSON.stringify({
-//             'name': name,
-//             'msg': msg,
-//             'thumbUp':thumbUp
-//           })
-//         })
-//         .then(response => {
-//           if (response.ok) return response.json()
-//         })
-//         .then(data => {
-//           console.log(data)
-//           window.location.reload(true)
-//         })
-//       });
-// });
-
-// Array.from(thumbDown).forEach(function(element) {
-//   element.addEventListener('click', function(){
-//     const name = this.parentNode.parentNode.childNodes[1].innerText
-//     const msg = this.parentNode.parentNode.childNodes[3].innerText
-//     const thumbUp = parseFloat(this.parentNode.parentNode.childNodes[5].innerText)
-//     fetch('messagesDown', {
-//       method: 'put',
-//       headers: {'Content-Type': 'application/json'},
-//       body: JSON.stringify({
-//         'name': name,
-//         'msg': msg,
-//         'thumbUp':thumbUp
-//       })
-//     })
-//     .then(response => {
-//       if (response.ok) return response.json()
-//     })
-//     .then(data => {
-//       console.log(data)
-//       window.location.reload(true)
-//     })
-//   });
-// });
-
-// Array.from(trash).forEach(function(element) {
-//       element.addEventListener('click', function(){
-//         const name = this.parentNode.parentNode.childNodes[1].innerText
-//         const msg = this.parentNode.parentNode.childNodes[3].innerText
-//         fetch('messages', {
-//           method: 'delete',
-//           headers: {
-//             'Content-Type': 'application/json'
-//           },
-//           body: JSON.stringify({
-//             'name': name,
-//             'msg': msg
-//           })
-//         }).then(function (response) {
-//           window.location.reload()
-//         })
-//       });
-// });

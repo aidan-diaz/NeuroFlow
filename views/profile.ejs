@@ -18,7 +18,7 @@
 <body>
   <header>
     <ul>
-      <li><a href="/reactionTest">Take Reaction Test</a></li>
+      <li><a href="/tests/getReactionTest">Take Reaction Test</a></li>
       <li><a href="/logout" class="logoutButton">Logout</a></li>
       <li class="profileImg"><i class="bi bi-person-circle"></i></li>
     </ul>
@@ -36,21 +36,23 @@
 
   <section>
     <% if(!scores.length) {%>
-    <form action="/createReactionTestSection" method="POST">
-      <h3>SCORE SAVING HAS NOT BEEN ENABLED FOR REACTION TEST</h3>
-      <button>Save Reaction Scores</button>
-    </form>
+      <form action="/tests/createReactionTest" method="POST">
+        <h3>SCORE SAVING HAS NOT BEEN ENABLED FOR REACTION TEST</h3>
+        <button>Save Reaction Scores</button>
+      </form>
       <% } %>
-    <% for(var i=0; i<scores.length; i++) {%>
-      <li>
-        <span>Reaction Score:</span>
-        <span>
-          <%= scores[i].reactionGameScore %>
-        </span>
-        <span><button class="deleteReactionScoreButton">Delete Score</button></span>
-      </li>
-      <% } %>
-        </ul>
+        <% for(var i=0; i<scores.length; i++) {%>
+          <li>
+            <span>Reaction Scores:</span>
+            <span>
+              <%= scores[i].scores %>
+            </span>
+            <form action="/tests/deleteReactionTestScore/<%= scores[i].id %>?_method=DELETE" method="POST">
+              <button class="deleteReactionScoreButton">Delete Scores</button>
+            </form>
+          </li>
+          <% } %>
+            </ul>
   </section>
 
   <script type="text/javascript" src="js/profile.js"></script>

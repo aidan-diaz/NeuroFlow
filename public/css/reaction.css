@@ -55,7 +55,7 @@ ul {
 .game {
   gap: 20px;
   justify-content: center;
-  max-width: 320px;
+  max-width: 640px;
 }
 .scoreBoard {
   height: 50px;
@@ -76,9 +76,9 @@ div {
   align-items: center;
   border: 2px solid black;
   border-radius: 50%;
-  height: 40px;
-  max-width: 40px;
-  min-width: 40px;
+  height: 100px;
+  max-width: 100px;
+  min-width: 100px;
   flex: 0 0 15%;
   background: radial-gradient(circle, #0D446C, #167DC6);
   background-size: contain;
@@ -125,11 +125,11 @@ button:hover {
 /* MEDIA QUERIES
   */
 
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 560px) {
   div {
-  max-width: 25px;
-  min-width: 25px;
-  height: 25px;
+  max-width: 75px;
+  min-width: 75px;
+  height: 75px;
   }
   .scoreBoard, h2 {
     display: block;
@@ -149,8 +149,3 @@ body {
 header {
   background-color: #9bccfd;
 }
-
-/* .game,
-.gameContainer {
-  height: 400px;
-} */
