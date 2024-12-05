@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="This is where your description goes">
+  <meta name="keywords" content="one, two, three">
+
+  <title>ACTIVE RECALL TEST</title>
+
+  <!-- external CSS link -->
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/recall.css">
+</head>
+
+<body>
+  <header>
+    <ul>
+        <li><a href="/profile">Back to Profile</a></li>
+        <li><a href="/logout" class="logoutButton">Logout</a></li>
+    </ul>
+  </header>
+  <main>
+    <h1>ACTIVE RECALL TEST</h1>
+    <h2>Instructions:</h2>
+    <p>A sequence of shapes will flash on the screen one by one. Once the shapes stop flashing, you will be given a list of shapes to click on. Click on them in the order that the sequence of shapes appeared. If you get it correct, the next test will load. If you get it incorrect, the test will end.</p>
+    <button id="startTestButton">BEGIN TEST</button>
+  </main>
+  <section id="shapeContainer">
+    <div class="shapes hidden">
+        <i class="bi-triangle-fill shape"></i>
+        <i class="bi-circle-fill shape"></i>
+        <i class="bi-square-fill shape"></i>
+        <i class="bi-heart-fill shape"></i>
+        <i class="bi-star-fill shape"></i>
+        <i class="bi-pentagon-fill shape"></i>
+        <i class="bi-hexagon-fill shape"></i>
+    </div>
+  </section>
+
+    <script type="text/javascript" src="/js/recall.js"></script>
+</body>
+
+</html>

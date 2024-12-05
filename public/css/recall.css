@@ -1,0 +1,137 @@
+/******************************************
+/* CSS
+/*******************************************/
+
+/* Box Model Hack */
+*{
+    box-sizing: border-box;
+  }
+  
+  /******************************************
+  /* FONTS
+  /*******************************************/
+  
+  html {
+    font-size: 62.5%;
+  }
+  
+  body {
+    font-size: 1.6rem;
+  }
+
+  h1 {
+    font-size: 4rem;
+  }
+
+  .shape {
+    font-size: 10rem;
+  }
+
+  h2,
+  p {
+    font-size: 3.6rem;
+  }
+  
+  /******************************************
+  /* LAYOUT
+  /*******************************************/
+    
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header{
+    height: 50px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  ul {
+    width: 90%;
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 40px;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 25px;
+  }
+
+  #shapeContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  h1 {
+    width: 100%;
+    text-align: center;
+  }
+  
+
+  
+  /* MEDIA QUERIES */
+  
+
+
+  
+  /******************************************
+  /* ADDITIONAL STYLES
+  /*******************************************/
+  
+  body {
+    background-color: #e7f2f8;
+  }
+  
+  header {
+    background-color: #9bccfd;
+  }
+
+  h2,
+  p {
+    width: 50%;
+  }
+
+  .bi-triangle-fill {
+    color: red;
+  }
+
+  .bi-circle-fill {
+    color: orange;
+  }
+
+  .bi-square-fill {
+    color: yellow;
+  }
+
+  .bi-heart-fill {
+    color: green;
+  }
+
+  .bi-star-fill {
+    color: blue;
+  }
+
+  .bi-pentagon-fill {
+    color: indigo;
+  }
+
+  .bi-hexagon-fill {
+    color: violet;
+  }
+
+  .hidden {
+    display: none;
+  }
+  
+  

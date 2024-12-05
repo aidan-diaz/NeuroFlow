@@ -1,3 +1,55 @@
+document.querySelector('#startTestButton').addEventListener('click', startTest)
+const shapes = document.querySelectorAll('.shapes .shape')
+
+function startTest() {
+    changeMainDisplay()
+    changeShapeContainerDisplay()
+    showSequence()
+}
+
+function changeMainDisplay() {
+    document.querySelector('main').classList.toggle('hidden')
+}
+
+function changeShapeContainerDisplay() {
+    document.querySelector('.shapes').classList.toggle('hidden')
+}
+
+function changeEachShapeDisplay() {
+    shapes.forEach(shape => shape.classList.toggle('hidden'))
+}
+
+function showSequence() {
+
+
+
+    //make sure to hide all shapes by default, so they can be shown one at a time
+    changeEachShapeDisplay()
+    let index = 0
+    //display each shape, with a short delay between each
+    const interval = setInterval(() => {
+        if (index < shapes.length) {
+            //ensure that the previous shape has been hidden before showing the next one
+            if (index > 0) {
+                shapes[index - 1].classList.add('hidden')
+            }
+            //display the current shape to the user
+            shapes[index].classList.remove('hidden')
+            index++;
+        } else {
+            //stop the set interval after showing all shapes
+            clearInterval(interval)
+            //make sure to hide the last shown shape as well
+            shapes[index - 1].classList.add('hidden')
+            //once all shapes have been shown, display them all again and allow user to choose their answers
+
+            //have a function to randomize shapes here before displaying
+            changeEachShapeDisplay()
+        }
+    }, 1000); //this will run every 1 second
+    //show all shapes again
+}
+
 // - Need to either make new schema for active recall test scores or add the key value pairs to the schema for the reaction test scores
 
 // - Need to possibly make another schema for the predefined active recall test sequences
@@ -22,64 +74,64 @@
 
 // - If their current score exceeded the high score that they had saved, the highScore in the document will be replaced with the current score 
 
-// [
-//   // 10 tests with 3 shapes
-//   { "name": "test_1", "sequence": ["triangle", "circle", "square"] },
-//   { "name": "test_2", "sequence": ["heart", "square", "circle"] },
-//   { "name": "test_3", "sequence": ["hexagon", "pentagon", "triangle"] },
-//   { "name": "test_4", "sequence": ["star", "circle", "heart"] },
-//   { "name": "test_5", "sequence": ["pentagon", "triangle", "square"] },
-//   { "name": "test_6", "sequence": ["circle", "hexagon", "star"] },
-//   { "name": "test_7", "sequence": ["heart", "square", "hexagon"] },
-//   { "name": "test_8", "sequence": ["triangle", "pentagon", "circle"] },
-//   { "name": "test_9", "sequence": ["square", "heart", "star"] },
-//   { "name": "test_10", "sequence": ["hexagon", "circle", "triangle"] },
+const sequences = [
+  // 10 tests with 3 shapes
+  { "name": "test_1", "sequence": ["triangle", "circle", "square"] },
+  { "name": "test_2", "sequence": ["heart", "square", "circle"] },
+  { "name": "test_3", "sequence": ["hexagon", "pentagon", "triangle"] },
+  { "name": "test_4", "sequence": ["star", "circle", "heart"] },
+  { "name": "test_5", "sequence": ["pentagon", "triangle", "square"] },
+  { "name": "test_6", "sequence": ["circle", "hexagon", "star"] },
+  { "name": "test_7", "sequence": ["heart", "square", "hexagon"] },
+  { "name": "test_8", "sequence": ["triangle", "pentagon", "circle"] },
+  { "name": "test_9", "sequence": ["square", "heart", "star"] },
+  { "name": "test_10", "sequence": ["hexagon", "circle", "triangle"] },
 
-//   // 10 tests with 4 shapes
-//   { "name": "test_11", "sequence": ["triangle", "square", "circle", "heart"] },
-//   { "name": "test_12", "sequence": ["pentagon", "triangle", "star", "hexagon"] },
-//   { "name": "test_13", "sequence": ["circle", "square", "pentagon", "star"] },
-//   { "name": "test_14", "sequence": ["hexagon", "heart", "triangle", "square"] },
-//   { "name": "test_15", "sequence": ["circle", "star", "heart", "pentagon"] },
-//   { "name": "test_16", "sequence": ["triangle", "square", "hexagon", "circle"] },
-//   { "name": "test_17", "sequence": ["heart", "triangle", "circle", "pentagon"] },
-//   { "name": "test_18", "sequence": ["star", "square", "hexagon", "triangle"] },
-//   { "name": "test_19", "sequence": ["circle", "heart", "star", "pentagon"] },
-//   { "name": "test_20", "sequence": ["hexagon", "circle", "triangle", "heart"] },
+  // 10 tests with 4 shapes
+  { "name": "test_11", "sequence": ["triangle", "square", "circle", "heart"] },
+  { "name": "test_12", "sequence": ["pentagon", "triangle", "star", "hexagon"] },
+  { "name": "test_13", "sequence": ["circle", "square", "pentagon", "star"] },
+  { "name": "test_14", "sequence": ["hexagon", "heart", "triangle", "square"] },
+  { "name": "test_15", "sequence": ["circle", "star", "heart", "pentagon"] },
+  { "name": "test_16", "sequence": ["triangle", "square", "hexagon", "circle"] },
+  { "name": "test_17", "sequence": ["heart", "triangle", "circle", "pentagon"] },
+  { "name": "test_18", "sequence": ["star", "square", "hexagon", "triangle"] },
+  { "name": "test_19", "sequence": ["circle", "heart", "star", "pentagon"] },
+  { "name": "test_20", "sequence": ["hexagon", "circle", "triangle", "heart"] },
 
-//   // 10 tests with 5 shapes
-//   { "name": "test_21", "sequence": ["triangle", "square", "circle", "heart", "pentagon"] },
-//   { "name": "test_22", "sequence": ["star", "hexagon", "pentagon", "triangle", "circle"] },
-//   { "name": "test_23", "sequence": ["circle", "square", "triangle", "star", "heart"] },
-//   { "name": "test_24", "sequence": ["hexagon", "pentagon", "heart", "triangle", "square"] },
-//   { "name": "test_25", "sequence": ["circle", "hexagon", "star", "triangle", "heart"] },
-//   { "name": "test_26", "sequence": ["square", "pentagon", "circle", "star", "heart"] },
-//   { "name": "test_27", "sequence": ["triangle", "circle", "heart", "hexagon", "square"] },
-//   { "name": "test_28", "sequence": ["star", "square", "circle", "pentagon", "hexagon"] },
-//   { "name": "test_29", "sequence": ["heart", "pentagon", "triangle", "square", "star"] },
-//   { "name": "test_30", "sequence": ["circle", "hexagon", "star", "heart", "triangle"] },
+  // 10 tests with 5 shapes
+  { "name": "test_21", "sequence": ["triangle", "square", "circle", "heart", "pentagon"] },
+  { "name": "test_22", "sequence": ["star", "hexagon", "pentagon", "triangle", "circle"] },
+  { "name": "test_23", "sequence": ["circle", "square", "triangle", "star", "heart"] },
+  { "name": "test_24", "sequence": ["hexagon", "pentagon", "heart", "triangle", "square"] },
+  { "name": "test_25", "sequence": ["circle", "hexagon", "star", "triangle", "heart"] },
+  { "name": "test_26", "sequence": ["square", "pentagon", "circle", "star", "heart"] },
+  { "name": "test_27", "sequence": ["triangle", "circle", "heart", "hexagon", "square"] },
+  { "name": "test_28", "sequence": ["star", "square", "circle", "pentagon", "hexagon"] },
+  { "name": "test_29", "sequence": ["heart", "pentagon", "triangle", "square", "star"] },
+  { "name": "test_30", "sequence": ["circle", "hexagon", "star", "heart", "triangle"] },
 
-//   // 10 tests with 6 shapes
-//   { "name": "test_31", "sequence": ["triangle", "circle", "square", "heart", "star", "pentagon"] },
-//   { "name": "test_32", "sequence": ["hexagon", "triangle", "square", "pentagon", "star", "circle"] },
-//   { "name": "test_33", "sequence": ["circle", "square", "heart", "star", "hexagon", "triangle"] },
-//   { "name": "test_34", "sequence": ["pentagon", "hexagon", "triangle", "circle", "square", "heart"] },
-//   { "name": "test_35", "sequence": ["hexagon", "circle", "pentagon", "heart", "star", "triangle"] },
-//   { "name": "test_36", "sequence": ["triangle", "square", "star", "circle", "heart", "pentagon"] },
-//   { "name": "test_37", "sequence": ["circle", "pentagon", "star", "hexagon", "heart", "triangle"] },
-//   { "name": "test_38", "sequence": ["hexagon", "circle", "square", "pentagon", "triangle", "star"] },
-//   { "name": "test_39", "sequence": ["heart", "triangle", "circle", "star", "pentagon", "square"] },
-//   { "name": "test_40", "sequence": ["circle", "star", "hexagon", "square", "triangle", "heart"] },
+  // 10 tests with 6 shapes
+  { "name": "test_31", "sequence": ["triangle", "circle", "square", "heart", "star", "pentagon"] },
+  { "name": "test_32", "sequence": ["hexagon", "triangle", "square", "pentagon", "star", "circle"] },
+  { "name": "test_33", "sequence": ["circle", "square", "heart", "star", "hexagon", "triangle"] },
+  { "name": "test_34", "sequence": ["pentagon", "hexagon", "triangle", "circle", "square", "heart"] },
+  { "name": "test_35", "sequence": ["hexagon", "circle", "pentagon", "heart", "star", "triangle"] },
+  { "name": "test_36", "sequence": ["triangle", "square", "star", "circle", "heart", "pentagon"] },
+  { "name": "test_37", "sequence": ["circle", "pentagon", "star", "hexagon", "heart", "triangle"] },
+  { "name": "test_38", "sequence": ["hexagon", "circle", "square", "pentagon", "triangle", "star"] },
+  { "name": "test_39", "sequence": ["heart", "triangle", "circle", "star", "pentagon", "square"] },
+  { "name": "test_40", "sequence": ["circle", "star", "hexagon", "square", "triangle", "heart"] },
 
-//   // 10 tests with 7 shapes
-//   { "name": "test_41", "sequence": ["triangle", "circle", "square", "heart", "star", "pentagon", "hexagon"] },
-//   { "name": "test_42", "sequence": ["heart", "triangle", "square", "circle", "star", "hexagon", "pentagon"] },
-//   { "name": "test_43", "sequence": ["pentagon", "hexagon", "heart", "circle", "square", "star", "triangle"] },
-//   { "name": "test_44", "sequence": ["circle", "square", "pentagon", "hexagon", "heart", "star", "triangle"] },
-//   { "name": "test_45", "sequence": ["hexagon", "triangle", "circle", "pentagon", "square", "star", "heart"] },
-//   { "name": "test_46", "sequence": ["triangle", "circle", "heart", "square", "hexagon", "star", "pentagon"] },
-//   { "name": "test_47", "sequence": ["circle", "pentagon", "triangle", "hexagon", "heart", "square", "star"] },
-//   { "name": "test_48", "sequence": ["hexagon", "triangle", "star", "circle", "heart", "pentagon", "square"] },
-//   { "name": "test_49", "sequence": ["heart", "circle", "triangle", "star", "pentagon", "hexagon", "square"] },
-//   { "name": "test_50", "sequence": ["square", "hexagon", "circle", "triangle", "pentagon", "heart", "star"] }
-// ]
+  // 10 tests with 7 shapes
+  { "name": "test_41", "sequence": ["triangle", "circle", "square", "heart", "star", "pentagon", "hexagon"] },
+  { "name": "test_42", "sequence": ["heart", "triangle", "square", "circle", "star", "hexagon", "pentagon"] },
+  { "name": "test_43", "sequence": ["pentagon", "hexagon", "heart", "circle", "square", "star", "triangle"] },
+  { "name": "test_44", "sequence": ["circle", "square", "pentagon", "hexagon", "heart", "star", "triangle"] },
+  { "name": "test_45", "sequence": ["hexagon", "triangle", "circle", "pentagon", "square", "star", "heart"] },
+  { "name": "test_46", "sequence": ["triangle", "circle", "heart", "square", "hexagon", "star", "pentagon"] },
+  { "name": "test_47", "sequence": ["circle", "pentagon", "triangle", "hexagon", "heart", "square", "star"] },
+  { "name": "test_48", "sequence": ["hexagon", "triangle", "star", "circle", "heart", "pentagon", "square"] },
+  { "name": "test_49", "sequence": ["heart", "circle", "triangle", "star", "pentagon", "hexagon", "square"] },
+  { "name": "test_50", "sequence": ["square", "hexagon", "circle", "triangle", "pentagon", "heart", "star"] }
+]
