@@ -1,7 +1,7 @@
 {
-  "name": "binary-upload-boom",
+  "name": "neuroflow",
   "version": "1.0.0",
-  "description": "RC Social Network",
+  "description": "Cognitive Training Application",
   "main": "server.js",
   "scripts": {
     "start": "node server.js --watch",
