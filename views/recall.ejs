@@ -10,35 +10,53 @@
 
   <!-- external CSS link -->
   <link rel="stylesheet" href="/css/reset.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
-    integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/recall.css">
 </head>
 
 <body>
   <header>
-    <ul>
+    <ul id="pageLinks">
         <li><a href="/profile">Back to Profile</a></li>
         <li><a href="/logout" class="logoutButton">Logout</a></li>
     </ul>
   </header>
-  <main>
-    <h1>ACTIVE RECALL TEST</h1>
-    <h2>Instructions:</h2>
-    <p>A sequence of shapes will flash on the screen one by one. Once the shapes stop flashing, you will be given a list of shapes to click on. Click on them in the order that the sequence of shapes appeared. If you get it correct, the next test will load. If you get it incorrect, the test will end.</p>
-    <button id="startTestButton">BEGIN TEST</button>
-  </main>
-  <section id="shapeContainer">
-    <div class="shapes hidden">
-        <i class="bi-triangle-fill shape"></i>
-        <i class="bi-circle-fill shape"></i>
-        <i class="bi-square-fill shape"></i>
-        <i class="bi-heart-fill shape"></i>
-        <i class="bi-star-fill shape"></i>
-        <i class="bi-pentagon-fill shape"></i>
-        <i class="bi-hexagon-fill shape"></i>
+  <section id="instructionsContainer">
+    <div class="instructionItems">
+        <h1>ACTIVE RECALL TEST</h1>
+        <h2>Instructions:</h2>
+        <p>A sequence of shapes will flash on the screen one by one. Once the shapes stop flashing, you will be given a list of shapes to click on. Click on them in the order that the sequence of shapes appeared. If you get it correct, the next test will load. If you get it incorrect, the test will end.</p>
+        <button id="startTestButton">BEGIN TEST</button>
     </div>
   </section>
+  <main class="hidden">
+    <section class="scoreboardContainer">
+        <ul class="scoreboard">
+            <li class="highScore">High Score: <span>0</span></li>
+            <li class="currentScore">currentScore: <span>0</span></li>
+            <li class="currentLevel">Level: <span></span></li>
+        </ul>
+    </section>
+    <section class="container text-center mt-5">
+        <h1>ACTIVE RECALL TEST</h1>
+        <div class="d-flex justify-content-center gap-3 mt-3">
+            <div id="button-container">
+                <button class="btn btn-primary difficultyButton" onclick="startTest('easy')">Easy (3 Shapes)</button>
+                <button class="btn btn-warning difficultyButton" onclick="startTest('medium')">Medium (4 Shapes)</button>
+                <button class="btn btn-danger difficultyButton" onclick="startTest('hard')">Hard (5 Shapes)</button>
+                <button class="btn btn-info difficultyButton" onclick="startTest('expert')">Expert (6 Shapes)</button>
+                <button class="btn btn-success difficultyButton" onclick="startTest('impossible')">Impossible (7 Shapes)</button>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-4" id="shape-container"></div>
+        <div class="d-flex justify-content-center">
+            <p id="message" class="mt-3"></p>
+        </div>
+    </section>
+</main>
 
     <script type="text/javascript" src="/js/recall.js"></script>
 </body>

@@ -3,135 +3,158 @@
 /*******************************************/
 
 /* Box Model Hack */
-*{
+* {
     box-sizing: border-box;
-  }
-  
-  /******************************************
+}
+
+/******************************************
   /* FONTS
   /*******************************************/
-  
-  html {
+
+html {
     font-size: 62.5%;
-  }
-  
-  body {
+}
+
+body {
     font-size: 1.6rem;
-  }
+}
 
-  h1 {
+h1 {
     font-size: 4rem;
-  }
+}
 
-  .shape {
+.shape {
     font-size: 10rem;
-  }
+}
 
-  h2,
-  p {
+h2,
+p {
     font-size: 3.6rem;
-  }
-  
-  /******************************************
+}
+
+/******************************************
   /* LAYOUT
   /*******************************************/
-    
-  * {
+
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-  }
-  
-  header{
+}
+
+header {
     height: 50px;
     display: flex;
     justify-content: center;
-  }
-  
-  ul {
+}
+
+#pageLinks {
     width: 90%;
     height: 50px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 40px;
-  }
+}
 
-  main {
+.instructionItems {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     gap: 25px;
-  }
+    margin-top: 50px;
+}
 
-  #shapeContainer {
+#shape-container {
+    height: 150px;
+    gap: 50px;
+    text-align: center;
+}
+
+h1 {
+    width: 100%;
+    text-align: center;
+}
+
+.scoreboard {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-  }
-  
-  h1 {
-    width: 100%;
-    text-align: center;
-  }
-  
+    gap: 100px;
+    list-style: none;
+    font-size: 3rem;
+}
 
-  
-  /* MEDIA QUERIES */
-  
+/* MEDIA QUERIES */
 
 
-  
-  /******************************************
+
+
+/******************************************
   /* ADDITIONAL STYLES
   /*******************************************/
-  
-  body {
+
+body {
     background-color: #e7f2f8;
-  }
-  
-  header {
+}
+
+header {
     background-color: #9bccfd;
-  }
+}
 
-  h2,
-  p {
+h2,
+p {
     width: 50%;
-  }
+}
 
-  .bi-triangle-fill {
+.bi-triangle-fill {
     color: red;
-  }
+}
 
-  .bi-circle-fill {
+.bi-circle-fill {
     color: orange;
-  }
+}
 
-  .bi-square-fill {
+.bi-square-fill {
     color: yellow;
-  }
+}
 
-  .bi-heart-fill {
+.bi-heart-fill {
     color: green;
-  }
+}
 
-  .bi-star-fill {
+.bi-star-fill {
     color: blue;
-  }
+}
 
-  .bi-pentagon-fill {
+.bi-pentagon-fill {
     color: indigo;
-  }
+}
 
-  .bi-hexagon-fill {
+.bi-hexagon-fill {
     color: violet;
-  }
+}
 
-  .hidden {
+#instructionsContainer {
+    text-align: center;
+}
+
+.hidden {
     display: none;
-  }
-  
-  
+}
+
+.difficultyButton {
+    width: 20rem;
+    height: 7.5rem;
+    font-size: 2.4rem;
+}
