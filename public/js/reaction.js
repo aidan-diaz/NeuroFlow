@@ -85,7 +85,7 @@ function targetFlip() {
 }
 
 function addNewReactionGameScore(scoreElement) {
-  fetch('/tests/addNewReactionGameScore', {
+  fetch('/reactionTests/addNewReactionGameScore', {
     method: 'put',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -102,7 +102,7 @@ function addNewReactionGameScore(scoreElement) {
 }
 
 function updateHighScore(highScoreValue) {
-  fetch('/tests/updateReactionTestHighScore', {
+  fetch('/reactionTests/updateReactionTestHighScore', {
     method: 'put',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({

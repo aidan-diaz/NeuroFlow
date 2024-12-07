@@ -21,7 +21,7 @@ const shapePools = {
     hard: ["bi-triangle-fill", "bi-circle-fill", "bi-square-fill", "bi-heart-fill", "bi-star-fill"],
     expert: ["bi-triangle-fill", "bi-circle-fill", "bi-square-fill", "bi-heart-fill", "bi-star-fill", "bi-pentagon-fill"],
     impossible: ["bi-triangle-fill", "bi-circle-fill", "bi-square-fill", "bi-heart-fill", "bi-star-fill", "bi-pentagon-fill", "bi-hexagon-fill"]
-};
+}
 // Active shape pool for the current test
 let currentShapePool = []
 

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const TestSchema = new mongoose.Schema({
+const ReactionTestSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
@@ -19,4 +19,4 @@ const TestSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Test", TestSchema);
+module.exports = mongoose.model("ReactionTest", ReactionTestSchema);
