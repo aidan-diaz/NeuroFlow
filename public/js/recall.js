@@ -122,6 +122,7 @@ function displayAnswerKey() {
         const shapeElement = createShapeElement(iconClass)
         addClickAnimations(shapeElement)
         shapeElement.addEventListener("click", () => handlePlayerInput(iconClass))
+        addMobileTouchAnimations(shapeElement)
         shapeContainer.appendChild(shapeElement)
     });
 }
@@ -231,6 +232,17 @@ function hideInstructionsScreen() {
 
 function addClickAnimations(shapeElement) {
     shapeElement.classList.add('clickable')
+}
+
+//ANIMTAIONS WORK DIFFERENT ON MOBILE, ADD THESE EVENT LISTENERS AS WELL TO MAKE SURE MOBILE USERS CAN SEE WHAT SHAPE THEY PRESSED
+function addMobileTouchAnimations(shapeElement) {
+    shapeElement.addEventListener('touchstart', () => {
+        shapeElement.classList.add('hover-effect')
+    })
+
+    shapeElement.addEventListener('touchend', () => {
+        shapeElement.classList.remove('hover-effect')
+    })
 }
 
 function addNewRecallTestScore(currentDifficulty) {
