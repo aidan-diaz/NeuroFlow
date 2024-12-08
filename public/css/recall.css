@@ -27,9 +27,22 @@ h1 {
     font-size: 10rem;
 }
 
+.scoreboard {
+    font-size: 3rem;
+}
+
 h2,
 p {
     font-size: 3.6rem;
+}
+
+.logoutButton,
+.difficultyButton {
+    font-size: 2.4rem;
+}
+
+#startTestButton {
+    font-size: 2.4rem;
 }
 
 /******************************************
@@ -43,18 +56,18 @@ p {
 }
 
 header {
-    height: 50px;
+    height: 10rem;
     display: flex;
     justify-content: center;
 }
 
 #pageLinks {
     width: 90%;
-    height: 50px;
+    height: 10rem;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 40px;
+    gap: 4rem;
 }
 
 .instructionItems {
@@ -71,13 +84,13 @@ main {
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 25px;
-    margin-top: 50px;
+    gap: 2.5rem;
+    margin-top: 5rem;
 }
 
 #shape-container {
-    height: 150px;
-    gap: 50px;
+    height: 1.5rem;
+    gap: 5rem;
     text-align: center;
 }
 
@@ -90,9 +103,8 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 100px;
+    gap: 10rem;
     list-style: none;
-    font-size: 3rem;
 }
 
 /* MEDIA QUERIES */
@@ -156,5 +168,4 @@ p {
 .difficultyButton {
     width: 20rem;
     height: 7.5rem;
-    font-size: 2.4rem;
 }

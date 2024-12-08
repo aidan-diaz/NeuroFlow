@@ -23,6 +23,10 @@ h2 {
   font-size: 2.4rem;
 }
 
+.logoutButton {
+  font-size: 2.4rem;
+}
+
 /******************************************
 /* LAYOUT
 /*******************************************/
@@ -34,6 +38,7 @@ h2 {
 }
 
 header{
+  height: 10rem;
   display: flex;
   justify-content: center;
 }
@@ -41,8 +46,8 @@ header{
 ul {
   display: flex;
   width: 90%;
-  height: 50px;
-  gap: 40px;
+  height: 10rem;
+  gap: 4rem;
   justify-content: flex-end;
   align-items: center;
 }
@@ -53,17 +58,13 @@ ul {
   justify-content: space-around;
 }
 .game {
-  gap: 20px;
+  gap: 2rem;
   justify-content: center;
-  max-width: 640px;
+  max-width: 64rem;
 }
 .scoreBoard {
-  height: 50px;
-  line-height: 50px;
-}
-
-header {
-  height: 50px;
+  height: 5rem;
+  line-height: 5rem;
 }
 
 h1 {
@@ -76,9 +77,9 @@ div {
   align-items: center;
   border: 2px solid black;
   border-radius: 50%;
-  height: 100px;
-  max-width: 100px;
-  min-width: 100px;
+  height: 10rem;
+  max-width: 10rem;
+  min-width: 10rem;
   flex: 0 0 15%;
   background: radial-gradient(circle, #0D446C, #167DC6);
   background-size: contain;
@@ -88,10 +89,10 @@ div:hover {
 }
 
 .goodButton, .game{
-  padding-top: 10px;
+  padding-top: 1rem;
 }
 .goodButton button {
-  padding: 10px;
+  padding: 1rem;
   background: grey;
   border: 2px solid black;
   color: whitesmoke;
@@ -127,14 +128,14 @@ button:hover {
 
 @media screen and (max-width: 560px) {
   div {
-  max-width: 75px;
-  min-width: 75px;
-  height: 75px;
+  max-width: 7.5rem;
+  min-width: 7.5rem;
+  height: 7.5rem;
   }
   .scoreBoard, h2 {
     display: block;
     width: 100%;
-    line-height: 30px;
+    line-height: 3rem;
   }
 }
 
