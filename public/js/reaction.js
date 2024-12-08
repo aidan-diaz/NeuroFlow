@@ -18,7 +18,7 @@ function startGame() {
 
     countdown--;
 
-    if (countdown < -1) {
+    if (countdown <= -1) {
       // Stop the interval
       clearInterval(interval);
       document.querySelector('.timer').innerHTML = '!!!TEST OVER!!!'
