@@ -135,30 +135,37 @@ p {
 
 .bi-triangle-fill {
     color: red;
+    transform: scale(1);
 }
 
 .bi-circle-fill {
     color: orange;
+    transform: scale(1);
 }
 
 .bi-square-fill {
     color: yellow;
+    transform: scale(1);
 }
 
 .bi-heart-fill {
     color: green;
+    transform: scale(1);
 }
 
 .bi-star-fill {
     color: blue;
+    transform: scale(1);
 }
 
 .bi-pentagon-fill {
     color: indigo;
+    transform: scale(1);
 }
 
 .bi-hexagon-fill {
     color: violet;
+    transform: scale(1);
 }
 
 #instructionsContainer {
