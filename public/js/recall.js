@@ -120,6 +120,7 @@ function displayAnswerKey() {
     currentShapePool.forEach(iconClass => {
         //creates an i tag with the classes "shape" and whatever the icon class from the shape pool array is
         const shapeElement = createShapeElement(iconClass)
+        addClickAnimations(shapeElement)
         shapeElement.addEventListener("click", () => handlePlayerInput(iconClass))
         shapeContainer.appendChild(shapeElement)
     });
@@ -224,6 +225,12 @@ function displayTestScreen() {
 
 function hideInstructionsScreen() {
     document.getElementById('instructionsContainer').classList.add('hidden')
+}
+
+//add a clickable class to all of the clickable elements for the answer
+
+function addClickAnimations(shapeElement) {
+    shapeElement.classList.add('clickable')
 }
 
 function addNewRecallTestScore(currentDifficulty) {
