@@ -25,7 +25,7 @@ function startGame() {
       document.querySelector('.timer').style.color = 'red'
       document.querySelector('#startGame').style.display = 'block'
       document.querySelector('#startGame').innerText = 'TEST AGAIN'
-      addNewReactionGameScore(scoreElement)
+      addNewReactionTestScore(scoreElement)
       updateHighScore(highScoreValue)
       scoreElement.innerText = 0
     }
@@ -84,8 +84,8 @@ function targetFlip() {
   }
 }
 
-function addNewReactionGameScore(scoreElement) {
-  fetch('/reactionTests/addNewReactionGameScore', {
+function addNewReactionTestScore(scoreElement) {
+  fetch('/reactionTests/addNewReactionTestScore', {
     method: 'put',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({

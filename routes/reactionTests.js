@@ -8,7 +8,7 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth");
 router.get("/getReactionTest", ensureAuth, reactionTestsController.getReactionTest)
 router.post("/createReactionTest", reactionTestsController.createReactionTestScores)
 router.put("/updateReactionTestHighScore", reactionTestsController.updateReactionTestHighScore)
-router.put("/addNewReactionGameScore", reactionTestsController.addNewReactionGameScore)
+router.put("/addNewReactionTestScore", reactionTestsController.addNewReactionGameScore)
 router.delete("/deleteReactionTestScore/:id", reactionTestsController.deleteReactionTestScores)
 
 module.exports = router;

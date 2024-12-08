@@ -35,7 +35,7 @@
   <main class="hidden">
     <section class="scoreboardContainer">
         <ul class="scoreboard">
-            <li class="highScore">High Score: <span>0</span></li>
+            <li class="highScore">High Score:</li>
             <li class="currentScore">Current Score: <span>0</span></li>
             <li class="currentLevel">Level: <span></span></li>
         </ul>
@@ -44,11 +44,11 @@
         <h1>ACTIVE RECALL TEST</h1>
         <div class="d-flex justify-content-center gap-3 mt-3">
             <div id="button-container">
-                <button class="btn btn-primary difficultyButton" onclick="startTest('easy')">Easy (3 Shapes)</button>
-                <button class="btn btn-warning difficultyButton" onclick="startTest('medium')">Medium (4 Shapes)</button>
-                <button class="btn btn-danger difficultyButton" onclick="startTest('hard')">Hard (5 Shapes)</button>
-                <button class="btn btn-info difficultyButton" onclick="startTest('expert')">Expert (6 Shapes)</button>
-                <button class="btn btn-success difficultyButton" onclick="startTest('impossible')">Impossible (7 Shapes)</button>
+                <button class="btn btn-primary difficultyButton" data-difficulty="easy" onclick="startTest('easy')">Easy (3 Shapes)</button>
+                <button class="btn btn-warning difficultyButton" data-difficulty="medium" onclick="startTest('medium')">Medium (4 Shapes)</button>
+                <button class="btn btn-danger difficultyButton" data-difficulty="hard" onclick="startTest('hard')">Hard (5 Shapes)</button>
+                <button class="btn btn-info difficultyButton" data-difficulty="expert" onclick="startTest('expert')">Expert (6 Shapes)</button>
+                <button class="btn btn-success difficultyButton" data-difficulty="impossible" onclick="startTest('impossible')">Impossible (7 Shapes)</button>
             </div>
         </div>
         <div class="d-flex justify-content-center mt-4" id="shape-container"></div>

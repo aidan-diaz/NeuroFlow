@@ -10,8 +10,11 @@ let playerSequence = []
 let level = 0
 let currentUserScore = 0
 //eventually switch high score to be whatever is stored in user document from DB
-let highScore = 0
+let highScore
 let sequencePlaying = false
+
+//will update this from the EJS based on the clicked difficulty button - undefined by default
+let currentDifficulty = undefined
 
 
 // Hardcoded shape pools
@@ -27,6 +30,11 @@ let currentShapePool = []
 
 //difficulty is being passed in from on click functions in the EJS
 function startTest(difficulty) {
+    //update global variable - need this to update scores in MongoDB later
+    currentDifficulty = difficulty
+    //run function to fetch highscore from MongoDB
+    fetchHighScore(currentDifficulty)
+
     //hide the buttons so the user cannot end the current test and start a different one in the middle of it
     toggleTestButtons()
     //set everything back to its default from page load
@@ -136,6 +144,10 @@ function handlePlayerInput(iconClass) {
     const currentStep = playerSequence.length - 1
     // Compare the player's most recently clicked shape to the corresponding indexed shape in the Test sequence
     if (playerSequence[currentStep] !== testSequence[currentStep]) {
+        //probably update database here
+        addNewRecallTestScore(currentDifficulty)
+        updateHighScore(currentDifficulty)
+
         updateMessageDisplay(`Wrong! Test over. You reached level ${level}.`)
         updateCurrentUserScore(0)
         displayCurrentScore()
@@ -250,3 +262,65 @@ function hideInstructionsScreen() {
 
 // - If their current score exceeded the high score that they had saved, the highScore in the document will be replaced with the current score 
 
+//need to create fetch requests to update scores
+//try to make the function reusable
+//
+
+function addNewRecallTestScore(currentDifficulty) {
+    fetch(`/recallTests/addNewRecallTestScore/${currentDifficulty}`, {
+      method: 'put',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        newScore: currentUserScore
+      })
+    })
+      .then(response => {
+        if (response.ok) return response.json()
+      })
+      .then(data => {
+        console.log(data)
+      })
+      .catch(err => {
+        console.log(`error ${err}`)
+    })
+  }
+
+  function updateHighScore(currentDifficulty) {
+    fetch(`/recallTests/updateRecallTestHighScore/${currentDifficulty}`, {
+      method: 'put',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        highScore: highScore
+      })
+    })
+      .then(response => {
+        if (response.ok) return response.json()
+      })
+      .then(data => {
+        console.log(data)
+        window.location.reload(true)
+      })
+      .catch(err => {
+        console.log(`error ${err}`)
+    })
+  }
+
+function fetchHighScore(currentDifficulty) {
+    const difficultyDisplay = currentDifficulty.slice(0,1).toUpperCase() + currentDifficulty.slice(1)
+    fetch('/recallTests/getRecallTestScore/', {
+        method: 'get',
+      })
+        .then(response => {
+          if (response.ok) return response.json()
+        })
+        .then(data => {
+            console.log(data)
+            //update high score variable, make sure it is a number
+            highScore = data.recallTest[`${currentDifficulty}HighScore`]
+            //update the DOM with High Score here:
+            document.querySelector('.highScore').innerHTML = `High Score (${difficultyDisplay}): <span>${highScore}</span>`
+        })
+        .catch(err => {
+          console.log(`error ${err}`)
+      })
+}

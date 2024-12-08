@@ -5,13 +5,22 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 //Recall Tests Routes
 
-// router.get("/getReactionTest", ensureAuth, testsController.getReactionTest)
-// router.post("/createReactionTest", testsController.createReactionTestScores)
-// router.put("/updateReactionTestHighScore", testsController.updateReactionTestHighScore)
-// router.put("/addNewReactionGameScore", testsController.addNewReactionGameScore)
-// router.delete("/deleteReactionTestScore/:id", testsController.deleteReactionTestScores)
-
 router.get("/getActiveRecallTest", ensureAuth, recallTestsController.getActiveRecallTest)
+router.put("/addNewRecallTestScore/easy", recallTestsController.addEasyScore)
+router.put("/addNewRecallTestScore/medium", recallTestsController.addMediumScore)
+router.put("/addNewRecallTestScore/hard", recallTestsController.addHardScore)
+router.put("/addNewRecallTestScore/expert", recallTestsController.addExpertScore)
+router.put("/addNewRecallTestScore/impossible", recallTestsController.addImpossibleScore)
+
+//GET HIGH SCORES TO RENDER WITH EJS
+router.get("/getRecallTestScore", recallTestsController.getRecallTestHighScores)
+
+router.put("/updateRecallTestHighScore/easy", recallTestsController.updateRecallTestEasyHighScore)
+router.put("/updateRecallTestHighScore/medium", recallTestsController.updateRecallTestMediumHighScore)
+router.put("/updateRecallTestHighScore/hard", recallTestsController.updateRecallTestHardHighScore)
+router.put("/updateRecallTestHighScore/expert", recallTestsController.updateRecallTestExpertHighScore)
+router.put("/updateRecallTestHighScore/impossible", recallTestsController.updateRecallTestImpossibleHighScore)
 router.delete("/deleteRecallTestScore/:id", recallTestsController.deleteRecallTestScores)
+
 
 module.exports = router;
