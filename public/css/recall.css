@@ -278,45 +278,45 @@ p {
 
 /* TRIANGLE */
 .bi-triangle-fill.clickable.hover-effect {
-    transform: scale(1.5);
+    transform: scale(2);
     color: rgb(248, 104, 104);
-    transition: transform 0.5s ease, color 0.5s ease;
+    transition: transform 1s ease, color 1s ease;
 }
 /* CIRCLE */
 .bi-circle-fill.clickable.hover-effect {
-    transform: scale(1.5);
+    transform: scale(2);
     color: rgb(255, 187, 60);
-    transition: transform 0.5s ease, color 0.5s ease;
+    transition: transform 1s ease, color 1s ease;
 }
 /* SQUARE */
 .bi-square-fill.clickable.hover-effect {
-    transform: scale(1.5);
+    transform: scale(2);
     color: rgb(255, 255, 87);
-    transition: transform 0.5s ease, color 0.5s ease;
+    transition: transform 1s ease, color 1s ease;
 }
 /* HEART */
 .bi-heart-fill.clickable.hover-effect {
-    transform: scale(1.5);
+    transform: scale(2);
     color: lightgreen;
-    transition: transform 0.5s ease, color 0.5s ease;
+    transition: transform 1s ease, color 1s ease;
 }
 /* STAR */
 .bi-star-fill.clickable.hover-effect {
-    transform: scale(1.5);
+    transform: scale(2);
     color: lightblue;
-    transition: transform 0.5s ease, color 0.5s ease;
+    transition: transform 1s ease, color 1s ease;
 }
 /* PEANTAGON */
 .bi-pentagon-fill.clickable.hover-effect {
-    transform: scale(1.5);
+    transform: scale(2);
     color: rgb(152, 37, 235);
-    transition: transform 0.5s ease, color 0.5s ease;
+    transition: transform 1s ease, color 1s ease;
 }
 /* HEXAGON */
 .bi-hexagon-fill.clickable.hover-effect {
-    transform: scale(1.5);
+    transform: scale(2);
     color: rgb(249, 183, 249);
-    transition: transform 0.5s ease, color 0.5s ease;
+    transition: transform 1s ease, color 1s ease;
 }
 
 /* MEDIA QUERIES FOR HOVER AND ACTIVE ON DESKTOP - DISABLE THESE ON MOBILE */
