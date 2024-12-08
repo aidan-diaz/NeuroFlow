@@ -322,11 +322,17 @@ p {
 /* MEDIA QUERIES FOR HOVER AND ACTIVE ON DESKTOP - DISABLE THESE ON MOBILE */
 
 @media (hover: none) and (pointer: coarse) {
+    .bi-triangle-fill.clickable:hover,
+    .bi-circle-fill.clickable:hover,
+    .bi-square-fill.clickable:hover,
+    .bi-heart-fill.clickable:hover,
+    .bi-star-fill.clickable:hover,
+    .bi-pentagon-fill.clickable:hover,
     .bi-hexagon-fill.clickable:hover {
         transform: none;
     }
 
-    .bi-hexagon-fill.clickable:active {
+    /* .bi-hexagon-fill.clickable:active {
         transform: none;
-    }
+    } */
 }
