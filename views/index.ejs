@@ -19,17 +19,16 @@
         <header>
             <h1>NeuroFlow</h1>
         </header>
-        <main class="signInFormSection">
-            <form class="signInForm">
-                <div class="loginImgContainer">
-                    <img class="loginImg" src="css/img/loginImage.jpg" alt="Brain">
+        <main class="signInFormSection d-flex flex-column justify-content-center align-items-center">
+            <form class="signInForm shadow-lg p-3 mb-5 rounded d-flex flex-column mb-3 justify-content-center align-items-center">
+                <div class="loginImgContainer shadow-md p-3 mb-5 rounded">
+                    <img class="loginImg img-fluid" src="css/img/loginImage.jpg" alt="Brain">
                 </div>
-                <div>
-                    <a href="/login" class="loginBtns login">Login</a>
-                    <a href="/signup" class="loginBtns signUp">SignUp</a>
+                <div class="buttonContainer d-flex justify-content-evenly align-items-center flex-wrap">
+                    <a href="/login" class="btn btn-success btn-lg">Login</a>
+                    <a href="/signup" class="btn btn-warning btn-lg">SignUp</a>
                 </div>
             </form>
         </main>
-    
     </body>
 </html>
