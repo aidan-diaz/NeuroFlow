@@ -218,17 +218,6 @@ function toggleTestButtons() {
     buttonContainer.classList.toggle('hidden')
 }
 
-//able to click again after success text displays, try to fix that - DONE
-//add hover feature when user hovers over answer options
-//add a feature to show remaining clicks
-//add a scoreboard - DONE
-//add a high score - DONE
-//consider hiding the buttons for the different rounds. Only display them again when the user loses. - DONE
-//does not look great on mobile currently, go back and fix for mobile
-
-
-const shapes = document.querySelectorAll('.shapes .shape')
-
 function displayTestScreen() {
     document.querySelector('main').classList.remove('hidden')
 }
@@ -236,35 +225,6 @@ function displayTestScreen() {
 function hideInstructionsScreen() {
     document.getElementById('instructionsContainer').classList.add('hidden')
 }
-
-
-// - Need to either make new schema for active recall test scores or add the key value pairs to the schema for the reaction test scores
-
-// - Need to possibly make another schema for the predefined active recall test sequences
-
-// - When a user goes to the recall page, they should see instructions with how to take the test, and a start button
-
-// - When user clicks the start button, the first test should load
-
-// - The test should flash 3-7 shapes (depends on how many are in the test), and the user will then have to click on the shapes in the order in which they appeared
-
-// - the shapes that are flashed will have values that push to a sequence array
-
-// - after the sequence disappears, one of each shape will appear, and the user will be able to click on them one by one to form their answer (each part of the answer will be pushed to an array)
-
-// - once the answer array's length matches the sequence array's length, a check will be performed to see if they match
-
-// - If the user's answer matches the order in which the shapes appear, the user may proceed to the next level
-
-// - Otherwise, the test will end
-
-// - When the test ends, the user's current score will be pushed to the array of scores from their recallScores document
-
-// - If their current score exceeded the high score that they had saved, the highScore in the document will be replaced with the current score 
-
-//need to create fetch requests to update scores
-//try to make the function reusable
-//
 
 function addNewRecallTestScore(currentDifficulty) {
     fetch(`/recallTests/addNewRecallTestScore/${currentDifficulty}`, {
@@ -324,3 +284,42 @@ function fetchHighScore(currentDifficulty) {
           console.log(`error ${err}`)
       })
 }
+
+//able to click again after success text displays, try to fix that - DONE
+//add hover feature when user hovers over answer options
+//add a feature to show remaining clicks
+//add a scoreboard - DONE
+//add a high score - DONE
+//consider hiding the buttons for the different rounds. Only display them again when the user loses. - DONE
+//does not look great on mobile currently, go back and fix for mobile
+
+
+
+// - Need to either make new schema for active recall test scores or add the key value pairs to the schema for the reaction test scores
+
+// - Need to possibly make another schema for the predefined active recall test sequences
+
+// - When a user goes to the recall page, they should see instructions with how to take the test, and a start button
+
+// - When user clicks the start button, the first test should load
+
+// - The test should flash 3-7 shapes (depends on how many are in the test), and the user will then have to click on the shapes in the order in which they appeared
+
+// - the shapes that are flashed will have values that push to a sequence array
+
+// - after the sequence disappears, one of each shape will appear, and the user will be able to click on them one by one to form their answer (each part of the answer will be pushed to an array)
+
+// - once the answer array's length matches the sequence array's length, a check will be performed to see if they match
+
+// - If the user's answer matches the order in which the shapes appear, the user may proceed to the next level
+
+// - Otherwise, the test will end
+
+// - When the test ends, the user's current score will be pushed to the array of scores from their recallScores document
+
+// - If their current score exceeded the high score that they had saved, the highScore in the document will be replaced with the current score 
+
+//need to create fetch requests to update scores
+//try to make the function reusable
+//
+

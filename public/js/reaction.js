@@ -40,7 +40,7 @@ function targetFlip() {
 
   function handleClick() {
     let score = parseInt(scoreElement.innerText) + 1;
-    if(countdown > 0) {
+    if(countdown > -1) {
       // Increment the score
       scoreElement.innerText = score;
     }
