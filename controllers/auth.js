@@ -1,6 +1,7 @@
 const passport = require("passport");
 const validator = require("validator");
 const User = require("../models/User");
+const ReactionTest = require("../models/ReactionTest");
 
 exports.getLogin = (req, res) => {
   if (req.user) {
@@ -96,6 +97,8 @@ exports.postSignup = async (req, res, next) => {
       });
       return res.redirect("../signup");
     }
+
+    //consider making schemas for tests upon signup as well
 
     const user = new User({
       userName: req.body.userName,

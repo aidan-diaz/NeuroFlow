@@ -99,6 +99,9 @@ function addNewReactionGameScore(scoreElement) {
       console.log(data)
       window.location.reload(true)
     })
+    .catch(err => {
+      console.log(`error ${err}`)
+  })
 }
 
 function updateHighScore(highScoreValue) {
@@ -116,5 +119,8 @@ function updateHighScore(highScoreValue) {
       console.log(data)
       window.location.reload(true)
     })
+    .catch(err => {
+      console.log(`error ${err}`)
+  })
 }
 

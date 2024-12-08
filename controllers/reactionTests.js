@@ -1,18 +1,34 @@
-const Test = require("../models/ReactionTest");
+const ReactionTest = require("../models/ReactionTest");
+const RecallTest = require("../models/RecallTest");
 
 module.exports = {
   getProfile: async (req, res) => {
     try {
-      const tests = await Test.find({ user: req.user.id });
-      res.render("profile.ejs", { user: req.user, scores: tests });
+      const reactionTest = await ReactionTest.find({ user: req.user.id });
+      const recallTest = await RecallTest.find({ user: req.user.id });
+      res.render("profile.ejs", { user: req.user, reactionTest: reactionTest, recallTest: recallTest });
     } catch (err) {
       console.log(err);
     }
   },
   getReactionTest: async (req, res) => {
     try {
-      const test = await Test.find({ user: req.user.id });
-      res.render("reaction.ejs", { user: req.user, scores: test });
+      let test = await ReactionTest.find({ user: req.user.id });
+      if(test.length) {
+        res.render("reaction.ejs", { user: req.user, scores: test });
+      }else {
+        const reactionTest = new ReactionTest({
+          user: req.user.id,
+          scores: [],
+          highScore: 0,
+        });
+    
+        await reactionTest.save();
+        test = await ReactionTest.find({ user: req.user.id });
+        res.render("reaction.ejs", { user: req.user, scores: test });
+      }
+
+      
     } catch (err) {
       console.log(err);
     }
@@ -20,7 +36,7 @@ module.exports = {
   createReactionTestScores: async (req, res) => {
     try {
 
-      await Test.create({
+      await ReactionTest.create({
         user: req.user.id,
         scores: [],
         highScore: 0,
@@ -33,7 +49,7 @@ module.exports = {
   },
   addNewReactionGameScore: async (req, res) => {
     try {
-      await Test.findOneAndUpdate(
+      await ReactionTest.findOneAndUpdate(
         { user: req.user.id },
         {
           $push: { scores: req.body.newScore },
@@ -46,7 +62,7 @@ module.exports = {
   },
   updateReactionTestHighScore: async (req, res) => {
     try {
-      await Test.findOneAndUpdate(
+      await ReactionTest.findOneAndUpdate(
         { user: req.user.id },
         {
           $set: { highScore: req.body.highScore },
@@ -59,7 +75,7 @@ module.exports = {
   },
   deleteReactionTestScores: async (req, res) => {
     try {
-      await Test.findOneAndDelete({_id: req.params.id});
+      await ReactionTest.findOneAndDelete({_id: req.params.id});
       console.log("Deleted Reaction Test Scores");
       res.redirect("/profile");
     } catch (err) {

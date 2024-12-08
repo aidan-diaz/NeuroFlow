@@ -5,11 +5,43 @@ const RecallTestSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  scores: {
+  easyScores: {
     type: Array,
     required: true
   },
-  highScore: {
+  easyHighScore: {
+    type: Number,
+    required: true
+  },
+  mediumScores: {
+    type: Array,
+    required: true
+  },
+  mediumHighScore: {
+    type: Number,
+    required: true
+  },
+  hardScores: {
+    type: Array,
+    required: true
+  },
+  hardHighScore: {
+    type: Number,
+    required: true
+  },
+  expertScores: {
+    type: Array,
+    required: true
+  },
+  expertHighScore: {
+    type: Number,
+    required: true
+  },
+  impossibleScores: {
+    type: Array,
+    required: true
+  },
+  impossibleHighScore: {
     type: Number,
     required: true
   },

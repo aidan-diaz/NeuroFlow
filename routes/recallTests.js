@@ -12,5 +12,6 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth");
 // router.delete("/deleteReactionTestScore/:id", testsController.deleteReactionTestScores)
 
 router.get("/getActiveRecallTest", ensureAuth, recallTestsController.getActiveRecallTest)
+router.delete("/deleteRecallTestScore/:id", recallTestsController.deleteRecallTestScores)
 
 module.exports = router;
