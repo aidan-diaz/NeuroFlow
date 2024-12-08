@@ -70,6 +70,10 @@ header {
     gap: 4rem;
 }
 
+.instructionsContainer {
+    margin-top: 5rem;
+}
+
 .instructionItems {
     display: flex;
     flex-direction: column;
@@ -89,7 +93,7 @@ main {
 }
 
 #shape-container {
-    height: 1.5rem;
+    height: 20rem;
     gap: 5rem;
     text-align: center;
 }
