@@ -71,7 +71,7 @@
             </p>
             <h3>High Score (Impossible): <span><%= recallTest[i].impossibleHighScore %></span></h3>
             <form action="/recallTests/deleteRecallTestScore/<%= recallTest[i].id %>?_method=DELETE" method="POST">
-              <button class="deleteRecallScoreButton">Delete Progress</button>
+              <button class="deleteRecallScoreButton btn btn-danger btn-lg">Delete Progress</button>
             </form>
             <% } %>
     </div>
@@ -87,7 +87,7 @@
             </p>
             <h3>High Score: <span><%= reactionTest[i].highScore %></span></h3>
             <form action="/reactionTests/deleteReactionTestScore/<%= reactionTest[i].id %>?_method=DELETE" method="POST">
-              <button class="deleteReactionScoreButton">Delete Progress</button>
+              <button class="deleteReactionScoreButton btn btn-danger btn-lg">Delete Progress</button>
             </form>
             <% } %>
     </div>

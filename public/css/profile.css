@@ -27,9 +27,13 @@ h1{
   font-size: 5rem;
 }
 
-.logoutButton,
-#startTestButton {
+.logoutButton {
   font-size: 2.4rem;
+}
+
+.deleteRecallScoreButton,
+.deleteReactionScoreButton {
+  font-size: 1.6rem;
 }
 
 /******************************************
