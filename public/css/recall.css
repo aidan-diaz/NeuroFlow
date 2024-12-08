@@ -318,3 +318,15 @@ p {
     color: rgb(249, 183, 249);
     transition: transform 0.2s ease, color 0.2s ease;
 }
+
+/* MEDIA QUERIES FOR HOVER AND ACTIVE ON DESKTOP - DISABLE THESE ON MOBILE */
+
+@media (hover: none) and (pointer: coarse) {
+    .bi-hexagon-fill.clickable:hover {
+        transform: none;
+    }
+
+    .bi-hexagon-fill.clickable:active {
+        transform: none;
+    }
+}
