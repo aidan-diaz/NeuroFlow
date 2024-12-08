@@ -57,7 +57,7 @@ function targetFlip() {
 
   }
 
-  if (countdown > 0) {
+  if (countdown > -1) {
     // Reset the color of all target elements
     document.querySelectorAll('.target').forEach(element => {
       element.style.background = 'radial-gradient(circle, #0D446C, #167DC6)';
