@@ -24,6 +24,7 @@ let currentDifficulty
 
 document.getElementById('testScreenButton').addEventListener('click', toggleInstructionsDisplay)
 document.getElementById('testScreenButton').addEventListener('click', toggleTestContainerButtonDisplay)
+document.getElementById('testScreenButton').addEventListener('click', displayScoreBoard)
 document.getElementById('submitAnswerButton').addEventListener('click', evaluateUserAnswer)
 document.getElementById('hintButton').addEventListener('click', displayHint)
 
@@ -76,6 +77,11 @@ function generateLevelSequence(levelData) {
     currentSequence[missingIndex] = "?"
     displayCurrentLevel()
     displayCurrentSequence()
+}
+
+
+function displayScoreBoard() {
+    document.getElementById('scoreboardContainer').classList.remove('hidden')
 }
 
 //show pattern on screen

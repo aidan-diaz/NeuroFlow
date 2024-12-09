@@ -27,9 +27,16 @@
     <section id="instructionsContainer">
       <div class="d-flex flex-column justify-content-center align-items-center gap-3 mt-3">
         <p>INSTRUCTIONS: Test will appear and then take the test</p>
-        <button id="testScreenButton">START TEST</button>
+        <button id="testScreenButton" class="btn btn-success">START TEST</button>
       </div>
     </section>
+    <section id="scoreboardContainer" class="hidden">
+      <ul class="scoreboard">
+          <li class="highScore">High Score:</li>
+          <li class="currentScore">Current Score: <span>0</span></li>
+          <li class="currentLevel">Level: <span></span></li>
+      </ul>
+  </section>
     <section id="testDifficultyButtonContainer" class="hidden">
       <div class="d-flex flex-column justify-content-center align-items-center gap-3 mt-3">
         <h1>THIS IS WHERE TEST DIFFICULTY BUTTONS WILL BE</h1>
