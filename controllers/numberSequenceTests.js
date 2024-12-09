@@ -29,7 +29,16 @@ module.exports = {
         } catch (err) {
           console.log(err);
         }
-      }
+      },
+      deleteNumberSequenceTestScores: async (req, res) => {
+        try {
+          await NumberSequenceTest.findOneAndDelete({_id: req.params.id});
+          console.log("Deleted Number Sequence Test Scores");
+          res.redirect("/profile");
+        } catch (err) {
+          res.redirect("/profile");
+        }
+      },
 
 }
 

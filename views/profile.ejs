@@ -94,6 +94,39 @@
     </div>
     <div class="col">
       <h2>Test 3 Stats</h2>
+      <% if(!numberSequenceTest.length) {%>
+        <h4>No Stats Yet - Take a Test to record progress!</h4>
+        <% } %>
+          <% for(var i=0; i<numberSequenceTest.length; i++) {%>
+            <h3>All Scores (Easy):</h3>
+            <p>
+              <%= numberSequenceTest[i].easyScores %>
+            </p>
+            <h3>High Score (Easy): <span><%= numberSequenceTest[i].easyHighScore %></span></h3>
+            <h3>All Scores (Medium):</h3>
+            <p>
+              <%= numberSequenceTest[i].mediumScores %>
+            </p>
+            <h3>High Score (Medium): <span><%= numberSequenceTest[i].mediumHighScore %></span></h3>
+            <h3>All Scores (Hard):</h3>
+            <p>
+              <%= numberSequenceTest[i].hardScores %>
+            </p>
+            <h3>High Score (Hard): <span><%= numberSequenceTest[i].hardHighScore %></span></h3>
+            <h3>All Scores (Expert):</h3>
+            <p>
+              <%= numberSequenceTest[i].expertScores %>
+            </p>
+            <h3>High Score (Expert): <span><%= numberSequenceTest[i].expertHighScore %></span></h3>
+            <h3>All Scores (Impossible):</h3>
+            <p>
+              <%= numberSequenceTest[i].impossibleScores %>
+            </p>
+            <h3>High Score (Impossible): <span><%= numberSequenceTest[i].impossibleHighScore %></span></h3>
+            <form action="/numberSequenceTests/deleteNumberSequenceTestScore/<%= numberSequenceTest[i].id %>?_method=DELETE" method="POST">
+              <button class="deleteNumberSequenceScoreButton btn btn-danger btn-lg">Delete Progress</button>
+            </form>
+            <% } %>
     </div>
   </div>
 </section>

@@ -32,7 +32,8 @@ h1{
 }
 
 .deleteRecallScoreButton,
-.deleteReactionScoreButton {
+.deleteReactionScoreButton,
+.deleteNumberSequenceScoreButton {
   font-size: 1.6rem;
 }
 
