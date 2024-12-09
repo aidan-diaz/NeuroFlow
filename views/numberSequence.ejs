@@ -14,9 +14,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-  <link rel="stylesheet" href="/css/recall.css">
+  <link rel="stylesheet" href="/css/numberSequence.css">
 </head>
-
 <body>
   <header>
     <ul id="pageLinks">
@@ -24,7 +23,38 @@
         <li><a href="/logout" class="logoutButton btn btn-danger btn-lg">Logout</a></li>
     </ul>
   </header>
-
+  <main>
+    <section id="instructionsContainer">
+      <div class="d-flex flex-column justify-content-center align-items-center gap-3 mt-3">
+        <p>INSTRUCTIONS: Test will appear and then take the test</p>
+        <button id="testScreenButton">START TEST</button>
+      </div>
+    </section>
+    <section id="testDifficultyButtonContainer" class="hidden">
+      <div class="d-flex flex-column justify-content-center align-items-center gap-3 mt-3">
+        <h1>THIS IS WHERE TEST DIFFICULTY BUTTONS WILL BE</h1>
+        <div class="d-flex gap-5">
+          <button class="btn btn-primary difficultyButton" data-difficulty="easy" onclick="startTest('easy')">Easy</button>
+          <button class="btn btn-warning difficultyButton" data-difficulty="medium" onclick="startTest('medium')">Medium</button>
+          <button class="btn btn-danger difficultyButton" data-difficulty="hard" onclick="startTest('hard')">Hard</button>
+          <button class="btn btn-info difficultyButton" data-difficulty="expert" onclick="startTest('expert')">Expert</button>
+          <button class="btn btn-success difficultyButton" data-difficulty="impossible" onclick="startTest('impossible')">Impossible</button>
+        </div>
+      </div>
+    </section>
+    <section id="testContainer" class="hidden">
+      <div id="currentTest" class="d-flex flex-column justify-content-center align-items-center gap-3 mt-3"></div>
+      <div id="answerContainer" class="d-flex flex-column justify-content-center align-items-center gap-3 mt-3">
+          <input type="number" id="userAnswer">
+        <div id="answerButtonsContainer">
+          <button id="hintButton" class="btn btn-secondary">GET HINT</button>
+          <button id="submitAnswerButton" class="btn btn-success">SUBMIT ANSWER</button>
+        </div>
+          <p id="hint"></p>
+          <p id="answerResult"></p>
+      </div>
+    </section>
+  </main>
 
     <script type="text/javascript" src="/js/numberSequence.js"></script>
 </body>

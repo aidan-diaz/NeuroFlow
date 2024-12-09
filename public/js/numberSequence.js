@@ -11,10 +11,144 @@
 //their high score for that difficulty will also be recorded and updated in the database
 
 
+//make default level 1, so first test is loaded when a difficulty is selected
+let level = 1;
+//declare a variable to store current test sequence in
+let currentSequence
+//eventually store missing index for current test in here
+let missingIndex
+//store the correct answer for the current sequence in here
+let correctAnswer
+//need a way to save the current difficulty for the tests
+let currentDifficulty
 
+document.getElementById('testScreenButton').addEventListener('click', toggleInstructionsDisplay)
+document.getElementById('testScreenButton').addEventListener('click', toggleTestContainerButtonDisplay)
+document.getElementById('submitAnswerButton').addEventListener('click', evaluateUserAnswer)
+document.getElementById('hintButton').addEventListener('click', displayHint)
 
+function toggleInstructionsDisplay() {
+    document.getElementById('instructionsContainer').classList.toggle('hidden')
+}
 
+function toggleTestContainerButtonDisplay() {
+    document.getElementById('testDifficultyButtonContainer').classList.toggle('hidden')
+}
 
+function displayTestContainer() {
+    document.getElementById('testContainer').classList.remove('hidden')
+}
+
+function startTest(difficulty) {
+    currentDifficulty = difficulty
+    toggleTestContainerButtonDisplay()
+    displayTestContainer()
+    loadCurrentLevel(currentDifficulty)
+}
+
+//append to #testContainer div when generating tests
+
+function loadCurrentLevel(currentDifficulty) {
+    //pass in the difficulty to grab the level from the levels database variable based on the difficulty
+    const levelData = levelsDatabase[`${currentDifficulty}Levels`][level]
+    console.log(currentDifficulty, levelData)
+    generateLevelSequence(levelData)
+}
+
+function generateLevelSequence(levelData) {
+    //spread the level sequence into a new array
+    currentSequence = [...levelData.sequence]
+    //make the missing index random
+    missingIndex = Math.floor(Math.random() * currentSequence.length)
+    //update the correct answer to be whatever the missing number from the index is
+    correctAnswer = currentSequence[missingIndex]
+    //generate the missing num as a question mark when displaying
+    currentSequence[missingIndex] = "?"
+    displayCurrentLevel()
+    displayCurrentSequence()
+}
+
+//show pattern on screen
+
+function displayCurrentSequence() {
+    const testContainer = document.getElementById('currentTest')
+    const sequenceSpan = document.createElement('span')
+    //add a class to it to make font larger
+    sequenceSpan.classList.add('sequenceSpan')
+    //join the elements back into a string with a comma and a space
+    sequenceSpan.innerText = currentSequence.join(', ')
+    testContainer.appendChild(sequenceSpan)
+}
+
+function displayCurrentLevel() {
+    const difficultyDisplay = currentDifficulty.substring(0, 1).toUpperCase() + currentDifficulty.substring(1)
+    const testContainer = document.getElementById('currentTest')
+    const currentLevelLabel = document.createElement('h2')
+    currentLevelLabel.innerText = `Level ${level} - ${difficultyDisplay}`
+    testContainer.appendChild(currentLevelLabel)
+}
+
+function clearCurrentSequence() {
+    const testContainer = document.getElementById('currentTest')
+    testContainer.innerText = ''
+}
+
+//make sure to clear old user input before rendering next level
+function clearUserInput() {
+    const userAnswer = document.getElementById('userAnswer')
+    userAnswer.value = ''
+}
+
+//allow user to get a hint as to what the pattern is about
+function displayHint() {
+    const hintContainer = document.getElementById('hint')
+    //grab the pattern from the database variables
+    hintContainer.innerText = levelsDatabase[`${currentDifficulty}Levels`][level].pattern
+}
+
+function clearHint() {
+    const hintContainer = document.getElementById('hint')
+    hintContainer.innerText = ''
+}
+
+function showAnswerResult(result) {
+   const answerResult = document.getElementById('answerResult')
+   answerResult.innerText = result
+}
+
+function clearAnswerResult() {
+    const answerResult = document.getElementById('answerResult')
+    answerResult.innerText = ''
+}
+
+function toggleAnswerItemsDisplay() {
+    document.getElementById('userAnswer').classList.add('hidden')
+    document.getElementById('answerButtonsContainer').classList.add('hidden')
+}
+
+//if user answer is correct, incriment the level and display correct and wait a second or so before generating the next test
+
+//if incorrect, reset the level and end the test. show the difficulty buttons again so the user can start another test
+function evaluateUserAnswer() {
+    const userAnswer = document.getElementById('userAnswer').value
+    if(userAnswer == correctAnswer) {
+        showAnswerResult('CORRECT! Loading next level...')
+        setTimeout(() => {
+            level++
+            clearCurrentSequence()
+            clearUserInput()
+            clearAnswerResult()
+            clearHint()
+            //current level loads, but old one is not being cleared - find way to clear
+            loadCurrentLevel(currentDifficulty)
+        }, 1500)
+    }else {
+        toggleAnswerItemsDisplay()
+        clearHint()
+        showAnswerResult(`INCORRECT. You reached level ${level} (${currentDifficulty}).`)
+        //here is one spot where the user's scores can be updated in MongoDB
+    }
+}
 
 
 

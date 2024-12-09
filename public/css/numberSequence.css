@@ -1,0 +1,104 @@
+/******************************************
+/* CSS
+/*******************************************/
+
+/* Box Model Hack */
+*{
+    box-sizing: border-box;
+  }
+  
+  /******************************************
+  /* FONTS
+  /*******************************************/
+  
+  html {
+    font-size: 62.5%;
+  }
+  
+  body {
+    font-size: 1.6rem;
+  }
+
+  .btn {
+    font-size: 3.2rem;
+  }
+
+  .logoutButton {
+    font-size: 2.4rem;
+  }
+
+  #hintButton,
+  #submitAnswerButton {
+    font-size: 2.4rem;
+  }
+
+  .sequenceSpan,
+  #answerResult {
+    font-size: 3.6rem;
+  }
+
+  
+  /******************************************
+  /* LAYOUT
+  /*******************************************/
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    height: 100vh;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  header,
+  ul {
+    display: flex;
+    gap: 5.5rem;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  header {
+    width: 100vw;
+    height: 10rem;
+  }
+  
+  ul {
+    width: 90%;
+    justify-content: flex-end;
+  }
+  
+ 
+  
+  /* MEDIA QUERIES */
+  
+  
+  
+  /******************************************
+  /* ADDITIONAL STYLES
+  /*******************************************/
+  body {
+    background-color: #e7f2f8;
+  }
+  
+  header {
+    background-color: #9bccfd;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+
+  .hidden {
+    display: none;
+  }
