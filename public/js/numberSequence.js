@@ -21,9 +21,13 @@ let missingIndex
 let correctAnswer
 //need a way to save the current difficulty for the tests
 let currentDifficulty
+//need variable for current user score
+let currentUserScore = 0
+
+let highScore
 
 document.getElementById('testScreenButton').addEventListener('click', toggleInstructionsDisplay)
-document.getElementById('testScreenButton').addEventListener('click', toggleTestContainerButtonDisplay)
+document.getElementById('testScreenButton').addEventListener('click', showTestContainerButtonDisplay)
 document.getElementById('testScreenButton').addEventListener('click', displayScoreBoard)
 document.getElementById('submitAnswerButton').addEventListener('click', evaluateUserAnswer)
 document.getElementById('hintButton').addEventListener('click', displayHint)
@@ -32,8 +36,12 @@ function toggleInstructionsDisplay() {
     document.getElementById('instructionsContainer').classList.toggle('hidden')
 }
 
-function toggleTestContainerButtonDisplay() {
-    document.getElementById('testDifficultyButtonContainer').classList.toggle('hidden')
+function showTestContainerButtonDisplay() {
+    document.getElementById('testDifficultyButtonContainer').classList.remove('hidden')
+}
+
+function hideTestContainerButtonDisplay() {
+    document.getElementById('testDifficultyButtonContainer').classList.add('hidden')
 }
 
 function displayTestContainer() {
@@ -42,8 +50,14 @@ function displayTestContainer() {
 
 function startTest(difficulty) {
     currentDifficulty = difficulty
-    toggleTestContainerButtonDisplay()
+    fetchHighScore(currentDifficulty)
+    clearCurrentSequence()
+    clearAnswerResult()
+    clearUserInput()
+    hideTestContainerButtonDisplay()
+    displayCurrentLevel()
     displayTestContainer()
+    displayAnswerItemsDisplay()
     loadCurrentLevel(currentDifficulty)
 }
 
@@ -98,10 +112,8 @@ function displayCurrentSequence() {
 
 function displayCurrentLevel() {
     const difficultyDisplay = currentDifficulty.substring(0, 1).toUpperCase() + currentDifficulty.substring(1)
-    const testContainer = document.getElementById('currentTest')
-    const currentLevelLabel = document.createElement('h2')
-    currentLevelLabel.innerText = `Level ${level} - ${difficultyDisplay}`
-    testContainer.appendChild(currentLevelLabel)
+    const testContainer = document.querySelector('.currentLevel')
+    testContainer.innerText = `Level ${level} - ${difficultyDisplay}`
 }
 
 function clearCurrentSequence() {
@@ -137,10 +149,16 @@ function clearAnswerResult() {
     answerResult.innerText = ''
 }
 
-function toggleAnswerItemsDisplay() {
+function hideAnswerItemsDisplay() {
     document.getElementById('userAnswer').classList.add('hidden')
     document.getElementById('answerButtonsContainer').classList.add('hidden')
 }
+
+function displayAnswerItemsDisplay() {
+    document.getElementById('userAnswer').classList.remove('hidden')
+    document.getElementById('answerButtonsContainer').classList.remove('hidden')
+}
+
 
 //if user answer is correct, incriment the level and display correct and wait a second or so before generating the next test
 
@@ -148,6 +166,9 @@ function toggleAnswerItemsDisplay() {
 function evaluateUserAnswer() {
     const userAnswer = document.getElementById('userAnswer').value
     if(userAnswer == correctAnswer) {
+        updateCurrentUserScore(currentUserScore + 1)
+        displayCurrentUserScore(currentUserScore)
+        updateAndDisplayHighScore()
         showAnswerResult('CORRECT! Loading next level...')
         //remove clicks for answer and click buttons temporarily
         removeAnswerButtonClick()
@@ -165,9 +186,16 @@ function evaluateUserAnswer() {
             allowHintButtonClick()
         }, 1500)
     }else {
-        toggleAnswerItemsDisplay()
+        clearCurrentSequence()
+        hideAnswerItemsDisplay()
         clearHint()
+        addNewNumberSequenceTestScore(currentDifficulty)
+        updateHighScore(currentDifficulty)
+        updateCurrentUserScore(0)
+        displayCurrentUserScore(currentUserScore)
+        showTestContainerButtonDisplay()
         showAnswerResult(`INCORRECT. You reached level ${level} (${currentDifficulty}).`)
+        level = 1
         //here is one spot where the user's scores can be updated in MongoDB
     }
 }
@@ -189,68 +217,82 @@ function allowHintButtonClick() {
     document.getElementById('hintButton').addEventListener('click', displayHint)
 }
 
+function updateCurrentUserScore(number) {
+    currentUserScore = number
+}
+
+function updateAndDisplayHighScore() {
+    if(currentUserScore > highScore) {
+        highScore = currentUserScore
+        document.querySelector('.highScore span').innerText = highScore
+    }
+}
+
+function displayCurrentUserScore(number) {
+    document.querySelector('.currentScore span').innerText = number
+}
 
 
 //reuse the three functions below from recall.js for when it's time to update the NumberSequenceTest db
 
-// function addNewRecallTestScore(currentDifficulty) {
-//     fetch(`/recallTests/addNewRecallTestScore/${currentDifficulty}`, {
-//       method: 'put',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify({
-//         newScore: currentUserScore
-//       })
-//     })
-//       .then(response => {
-//         if (response.ok) return response.json()
-//       })
-//       .then(data => {
-//         console.log(data)
-//       })
-//       .catch(err => {
-//         console.log(`error ${err}`)
-//     })
-//   }
+function addNewNumberSequenceTestScore(currentDifficulty) {
+    fetch(`/NumberSequenceTests/addNewNumberSequenceTestScore/${currentDifficulty}`, {
+      method: 'put',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        newScore: currentUserScore
+      })
+    })
+      .then(response => {
+        if (response.ok) return response.json()
+      })
+      .then(data => {
+        console.log(data)
+      })
+      .catch(err => {
+        console.log(`error ${err}`)
+    })
+  }
 
-//   function updateHighScore(currentDifficulty) {
-//     fetch(`/recallTests/updateRecallTestHighScore/${currentDifficulty}`, {
-//       method: 'put',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify({
-//         highScore: highScore
-//       })
-//     })
-//       .then(response => {
-//         if (response.ok) return response.json()
-//       })
-//       .then(data => {
-//         console.log(data)
-//         window.location.reload(true)
-//       })
-//       .catch(err => {
-//         console.log(`error ${err}`)
-//     })
-//   }
+  function updateHighScore(currentDifficulty) {
+    fetch(`/numberSequenceTests/updateNumberSequenceTestHighScore/${currentDifficulty}`, {
+      method: 'put',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        highScore: highScore
+      })
+    })
+      .then(response => {
+        if (response.ok) return response.json()
+      })
+      .then(data => {
+        console.log(data)
+      })
+      .catch(err => {
+        console.log(`error ${err}`)
+    })
+  }
 
-// function fetchHighScore(currentDifficulty) {
-//     const difficultyDisplay = currentDifficulty.slice(0,1).toUpperCase() + currentDifficulty.slice(1)
-//     fetch('/recallTests/getRecallTestScore/', {
-//         method: 'get',
-//       })
-//         .then(response => {
-//           if (response.ok) return response.json()
-//         })
-//         .then(data => {
-//             console.log(data)
-//             //update high score variable, make sure it is a number
-//             highScore = data.recallTest[`${currentDifficulty}HighScore`]
-//             //update the DOM with High Score here:
-//             document.querySelector('.highScore').innerHTML = `High Score (${difficultyDisplay}): <span>${highScore}</span>`
-//         })
-//         .catch(err => {
-//           console.log(`error ${err}`)
-//       })
-// }
+function fetchHighScore(currentDifficulty) {
+    const difficultyDisplay = currentDifficulty.slice(0,1).toUpperCase() + currentDifficulty.slice(1)
+    fetch('/numberSequenceTests/getnumberSequenceTestScore/', {
+        method: 'get',
+      })
+        .then(response => {
+          if (response.ok) return response.json()
+        })
+        .then(data => {
+            console.log(data)
+            //update high score variable, make sure it is a number
+            highScore = data.numberSequenceTest[`${currentDifficulty}HighScore`]
+            console.log(highScore)
+            //update the DOM with High Score here:
+            document.querySelector('.highScore').innerHTML = `High Score (${difficultyDisplay}): <span>${highScore}</span>`
+        })
+        .catch(err => {
+          console.log(`error ${err}`)
+      })
+}
 
 
 

@@ -30,6 +30,143 @@ module.exports = {
           console.log(err);
         }
       },
+      addEasyScore: async (req, res) => {
+        try {
+          await NumberSequenceTest.findOneAndUpdate(
+            { user: req.user.id },
+            {
+              $push: { easyScores: req.body.newScore },
+            }
+          );
+    
+        } catch (err) {
+          console.log(err);
+        }
+      },
+      addMediumScore: async (req, res) => {
+        try {
+          console.log('working')
+          await NumberSequenceTest.findOneAndUpdate(
+            { user: req.user.id },
+            {
+              $push: { mediumScores: req.body.newScore },
+            }
+          );
+        } catch (err) {
+          console.log(err);
+        }
+      },
+      addHardScore: async (req, res) => {
+        try {
+          await NumberSequenceTest.findOneAndUpdate(
+            { user: req.user.id },
+            {
+              $push: { hardScores: req.body.newScore },
+            }
+          );
+    
+        } catch (err) {
+          console.log(err);
+        }
+      },
+      addExpertScore: async (req, res) => {
+        try {
+          await NumberSequenceTest.findOneAndUpdate(
+            { user: req.user.id },
+            {
+              $push: { expertScores: req.body.newScore },
+            }
+          );
+    
+        } catch (err) {
+          console.log(err);
+        }
+      },
+      addImpossibleScore: async (req, res) => {
+        try {
+          await NumberSequenceTest.findOneAndUpdate(
+            { user: req.user.id },
+            {
+              $push: { impossibleScores: req.body.newScore },
+            }
+          );
+    
+        } catch (err) {
+          console.log(err);
+        }
+      }, 
+      getNumberSequenceTestHighScores: async (req, res) => {
+        try {
+          const numberSequenceTest = await NumberSequenceTest.findOne({ user: req.user.id });
+          res.json({ numberSequenceTest: numberSequenceTest });
+        } catch (err) {
+          console.log(err);
+        }
+      },
+      updateNumberSequenceTestEasyHighScore: async (req, res) => {
+        try {
+          await NumberSequenceTest.findOneAndUpdate(
+            { user: req.user.id },
+            {
+              $set: { easyHighScore: req.body.highScore },
+            }
+          );
+        } catch (err) {
+          console.log(err);
+        }
+      },
+      updateNumberSequenceTestMediumHighScore: async (req, res) => {
+        try {
+          await NumberSequenceTest.findOneAndUpdate(
+            { user: req.user.id },
+            {
+              $set: { mediumHighScore: req.body.highScore },
+            }
+          );
+    
+        } catch (err) {
+          console.log(err);
+        }
+      },
+      updateNumberSequenceTestHardHighScore: async (req, res) => {
+        try {
+          await NumberSequenceTest.findOneAndUpdate(
+            { user: req.user.id },
+            {
+              $set: { hardHighScore: req.body.highScore },
+            }
+          );
+    
+        } catch (err) {
+          console.log(err);
+        }
+      },
+      updateNumberSequenceTestExpertHighScore: async (req, res) => {
+        try {
+          await NumberSequenceTest.findOneAndUpdate(
+            { user: req.user.id },
+            {
+              $set: { expertHighScore: req.body.highScore },
+            }
+          );
+    
+        } catch (err) {
+          console.log(err);
+        }
+      },
+      updateNumberSequenceTestImpossibleHighScore: async (req, res) => {
+        try {
+          await NumberSequenceTest.findOneAndUpdate(
+            { user: req.user.id },
+            {
+              $set: { impossibleHighScore: req.body.highScore },
+            }
+          );
+    
+        } catch (err) {
+          console.log(err);
+        }
+      },
       deleteNumberSequenceTestScores: async (req, res) => {
         try {
           await NumberSequenceTest.findOneAndDelete({_id: req.params.id});

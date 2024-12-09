@@ -27,6 +27,10 @@
     font-size: 2.4rem;
   }
 
+  .scoreboard {
+    font-size: 3rem;
+}
+
   #hintButton,
   #submitAnswerButton {
     font-size: 2.4rem;
@@ -71,6 +75,19 @@
     width: 100vw;
     height: 10rem;
   }
+
+  #scoreboardContainer {
+    width: 100%;
+  }
+
+  .scoreboard {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10rem;
+    list-style: none;
+}
   
   ul {
     width: 90%;
