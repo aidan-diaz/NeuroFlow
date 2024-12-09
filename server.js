@@ -11,6 +11,7 @@ const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
 const reactionTestsRoutes = require("./routes/reactionTests");
 const recallTestsRoutes = require("./routes/recallTests");
+const numberSequenceTestsRoutes = require("./routes/numberSequenceTests");
 
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
@@ -58,6 +59,7 @@ app.use(flash());
 app.use("/", mainRoutes);
 app.use("/reactionTests", reactionTestsRoutes);
 app.use("/recallTests", recallTestsRoutes);
+app.use("/numberSequenceTests", numberSequenceTestsRoutes);
 
 //Server Running
 app.listen(process.env.PORT, () => {
