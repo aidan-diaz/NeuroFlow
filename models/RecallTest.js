@@ -52,6 +52,3 @@ const RecallTestSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model("RecallTest", RecallTestSchema);
-
-//possibly expand on schema - have a spot for easyScores, medScores, etc
-//need a high score spot for each difficulty as well
