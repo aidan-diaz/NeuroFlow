@@ -4,7 +4,6 @@ const recallTestsController = require("../controllers/recallTests");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 //Recall Tests Routes
-
 router.get("/getActiveRecallTest", ensureAuth, recallTestsController.getActiveRecallTest)
 router.put("/addNewRecallTestScore/easy", recallTestsController.addEasyScore)
 router.put("/addNewRecallTestScore/medium", recallTestsController.addMediumScore)

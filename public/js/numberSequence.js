@@ -56,6 +56,7 @@ function startTest(difficulty) {
     clearUserInput()
     hideTestContainerButtonDisplay()
     displayCurrentLevel()
+    displayCurrentUserScore(currentUserScore)
     displayTestContainer()
     displayAnswerItemsDisplay()
     loadCurrentLevel(currentDifficulty)
@@ -81,7 +82,7 @@ function loadCurrentLevel(currentDifficulty) {
         updateHighScore(currentDifficulty)
         //reset level so users can start again if desired
         level = 1
-        currentUserScore = 0
+        updateCurrentUserScore(0)
     }
 }
 
