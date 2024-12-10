@@ -72,11 +72,16 @@ function loadCurrentLevel(currentDifficulty) {
         generateLevelSequence(levelData)
     }else {
         //figure out what to clear and display here
-        //need to display difficulty buttons again
-        //need to hide answer stuff
-        //need to clear any and all text
-        //need to display text that all levels have been completed
-        //need to update database
+        showTestContainerButtonDisplay()
+        hideAnswerItemsDisplay()
+        clearCurrentSequence()
+        clearHint()
+        showAnswerResult('All levels passed. Great job!')
+        addNewNumberSequenceTestScore(currentDifficulty)
+        updateHighScore(currentDifficulty)
+        //reset level so users can start again if desired
+        level = 1
+        currentUserScore = 0
     }
 }
 
@@ -253,6 +258,7 @@ function addNewNumberSequenceTestScore(currentDifficulty) {
         console.log(`error ${err}`)
     })
   }
+
 
   function updateHighScore(currentDifficulty) {
     fetch(`/numberSequenceTests/updateNumberSequenceTestHighScore/${currentDifficulty}`, {
