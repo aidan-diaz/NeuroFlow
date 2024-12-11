@@ -72,6 +72,9 @@ ul {
 .scoreBoard {
   flex-flow: nowrap;
 }
+.gameContainer {
+  margin-top: 5rem;
+}
 .game {
   gap: 2rem;
   justify-content: center;
