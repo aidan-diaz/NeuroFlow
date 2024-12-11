@@ -1,25 +1,37 @@
 // Player clicks start button
 document.querySelector('#startGame').addEventListener('click', startGame)
 document.querySelector('#startGame').addEventListener('click', targetFlip)
+document.querySelector('#testScreenButton').addEventListener('click', displayTest)
+document.querySelector('#testScreenButton').addEventListener('click', hideInstructions)
 const highScore = document.querySelector('#highScore');
+
+
+function displayTest() {
+  document.querySelector('.scoreBoard').classList.remove('hidden')
+  document.querySelector('.gameContainer').classList.remove('hidden')
+  document.querySelector('.goodButton').classList.remove('hidden')
+}
+
+function hideInstructions() {
+  document.querySelector('#instructionsContainer').classList.add('hidden')
+}
 
 // Trigger start of game
 // Timer starts, counting down from 60sec to 0
 let countdown = 60
 let highScoreValue = parseInt(highScore.innerText)
 function startGame() {
+  document.querySelector('#startGame').style.display = 'none'
   countdown = 60
   const scoreElement = document.querySelector('#count');
   const interval = setInterval(() => {
     document.querySelector('.timer').innerHTML = 'Time Left: <span id="clock">`${countdown}`</span>'
-    document.querySelector('#startGame').style.display = 'none'
     document.querySelector('.timer').style.color = 'inherit'
     document.querySelector('#clock').innerText = countdown
 
     countdown--;
 
     if (countdown <= -1) {
-      // Stop the interval
       clearInterval(interval);
       document.querySelector('.timer').innerHTML = '!!!TEST OVER!!!'
       document.querySelector('.timer').style.color = 'red'

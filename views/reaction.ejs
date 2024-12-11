@@ -16,14 +16,24 @@
 		<link rel="stylesheet" href="/css/reaction.css">
 	</head>
 	<body>
-		<main>
-			<header>
-				<ul>
-					<li><a href="/profile">Back to Profile</a></li>
-                    <li><a href="/logout" class="logoutButton btn btn-danger btn-lg">Logout</a></li>
-				</ul>
-			</header>
-			<section class="scoreBoard">
+		<header>
+			<ul>
+				<li><a href="/profile">Back to Profile</a></li>
+				<li><a href="/logout" class="logoutButton btn btn-danger btn-lg">Logout</a></li>
+			</ul>
+		</header>
+		<main class="d-flex flex-column justify-content-center align-items-center gap-3 mt-3">
+			<section id="instructionsContainer">
+				<section id="instructions" class="d-flex flex-column justify-content-center align-items-center gap-3 mt-3">
+				  <h2>INSTRUCTIONS:</h2>
+				  <p>WHen the test appears, a grid of blue circles will appear. Once the test begins, a random circle will flip over and turn red. Your job is to recognize which circle flips over and click on it. Each time you click a red circle, it will revert back to blue, and a new one will flip over at random. Click as many red circles as you can in the 60 second time frame.</p>
+				  <br>
+				  <br>
+				  <p>The purpose of this test is to evaluate reaction speed and movement time.</p>
+				  <button id="testScreenButton" class="btn btn-success">START TEST</button>
+				</section>
+			  </section>
+			<section class="scoreBoard hidden">
                 <% for(var i=0; i<scores.length; i++) {%>
                     <h2>High Score: <span id="highScore">
                             <%= scores[i].highScore %>
@@ -36,7 +46,7 @@
 			  <h2 class="timer">Time Left: <span class="sec" id="clock">60</span></h2>
 			  
 			</section>
-			<section class="gameContainer">
+			<section class="gameContainer hidden">
 			  <section class="game">
 				<div class="tar1 target"></div>
 				<div class="tar2 target"></div>
@@ -65,8 +75,8 @@
 				<div class="tar25 target"></div>
 			  </section>
 			</section>
-			<section class="goodButton">
-			  <button type="button" id="startGame">START</button>
+			<section class="goodButton hidden">
+			  <button type="button" id="startGame" class="btn btn-success">START</button>
 			</section>
 		  </main>
 		<script type="text/javascript" src="/js/reaction.js"></script>

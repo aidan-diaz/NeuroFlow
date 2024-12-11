@@ -23,8 +23,15 @@ h2 {
   font-size: 2.4rem;
 }
 
-.logoutButton {
+.logoutButton,
+.btn-success {
   font-size: 2.4rem;
+}
+
+h2,
+p {
+    font-size: 3.6rem;
+    text-align: center;
 }
 
 /******************************************
@@ -52,6 +59,11 @@ ul {
   align-items: center;
 }
 
+#instructionsContainer {
+  width: 50%;
+  text-align: center;
+}
+
 .game, .gameContainer, .scoreBoard, div, .goodButton, footer {
   display: flex;
   flex-flow: wrap;
@@ -65,6 +77,7 @@ ul {
 .scoreBoard {
   height: 5rem;
   line-height: 5rem;
+  gap: 25rem;
 }
 
 h1 {
@@ -91,16 +104,15 @@ div:hover {
 .goodButton, .game{
   padding-top: 1rem;
 }
-.goodButton button {
-  padding: 1rem;
-  background: grey;
-  border: 2px solid black;
-  color: whitesmoke;
-}
+
 button:hover {
   color: blue;
   cursor: pointer;
   box-shadow: 2px 2px 2px red;
+}
+
+.hidden {
+  display: none;
 }
 
 
