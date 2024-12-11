@@ -69,6 +69,9 @@ ul {
   flex-flow: wrap;
   justify-content: space-around;
 }
+.scoreBoard {
+  flex-flow: nowrap;
+}
 .game {
   gap: 2rem;
   justify-content: center;
