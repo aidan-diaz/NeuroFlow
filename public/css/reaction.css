@@ -107,7 +107,8 @@ div:hover {
   cursor: crosshair;
 }
 
-.goodButton, .game{
+.goodButton, 
+.game{
   padding-top: 1rem;
 }
 
