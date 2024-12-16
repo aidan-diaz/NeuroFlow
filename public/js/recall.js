@@ -324,9 +324,4 @@ function fetchHighScore(currentDifficulty) {
 
 // - When the test ends, the user's current score will be pushed to the array of scores from their recallScores document
 
-// - If their current score exceeded the high score that they had saved, the highScore in the document will be replaced with the current score 
-
-//need to create fetch requests to update scores
-//try to make the function reusable
-//
-
+// - If their current score exceeded the high score that they had saved, the highScore in the document
