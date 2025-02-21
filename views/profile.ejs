@@ -37,34 +37,30 @@
 
 <section class="container text-center">
   <div class="row align-items-start">
+    <div id="recallChartContainer" ></div>
     <div id="activeRecallStatContainer" class="col">
       <h2>Active Recall Stats</h2>
       <% if(!recallTest.length) {%>
         <h4>No Stats Yet - Take a Test to record progress!</h4>
         <% } %>
           <% for(var i=0; i<recallTest.length; i++) {%>
-            <h3>All Scores (Easy):</h3>
-            <p>
+            <p class="recallScoresEasy allScores">
               <%= recallTest[i].easyScores %>
             </p>
             <h3>High Score (Easy): <span><%= recallTest[i].easyHighScore %></span></h3>
-            <h3>All Scores (Medium):</h3>
-            <p>
+            <p class="recallScoresMedium allScores">
               <%= recallTest[i].mediumScores %>
             </p>
             <h3>High Score (Medium): <span><%= recallTest[i].mediumHighScore %></span></h3>
-            <h3>All Scores (Hard):</h3>
-            <p>
+            <p class="recallScoresHard allScores">
               <%= recallTest[i].hardScores %>
             </p>
             <h3>High Score (Hard): <span><%= recallTest[i].hardHighScore %></span></h3>
-            <h3>All Scores (Expert):</h3>
-            <p>
+            <p class="recallScoresExpert allScores">
               <%= recallTest[i].expertScores %>
             </p>
             <h3>High Score (Expert): <span><%= recallTest[i].expertHighScore %></span></h3>
-            <h3>All Scores (Impossible):</h3>
-            <p>
+            <p class="recallScoresImpossible allScores">
               <%= recallTest[i].impossibleScores %>
             </p>
             <h3>High Score (Impossible): <span><%= recallTest[i].impossibleHighScore %></span></h3>
