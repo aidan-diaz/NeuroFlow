@@ -32,15 +32,12 @@
     <div>
       <h1><%= user.userName %>'s Progress</h1>
     </div>
-    <div class="chartContainer">
-      <img src="css/img/chart.webp" alt="sample chart" class="sampleChart">
-    </div>
 
   </main>
 
 <section class="container text-center">
   <div class="row align-items-start">
-    <div class="col">
+    <div id="activeRecallStatContainer" class="col">
       <h2>Active Recall Stats</h2>
       <% if(!recallTest.length) {%>
         <h4>No Stats Yet - Take a Test to record progress!</h4>
@@ -76,14 +73,14 @@
             </form>
             <% } %>
     </div>
-    <div class="col">
+    <div id="reactionChartContainer"></div>
+    <div id="reactionTestStatContainer" class="col">
       <h2>Reaction Stats</h2>
       <% if(!reactionTest.length) {%>
         <h4>No Stats Yet - Take a Test to record progress!</h4>
         <% } %>
           <% for(var i=0; i<reactionTest.length; i++) {%>
-            <h3>All Scores:</h3>
-            <p>
+            <p class="reactionScores allScores">
               <%= reactionTest[i].scores %>
             </p>
             <h3>High Score: <span><%= reactionTest[i].highScore %></span></h3>
@@ -92,7 +89,7 @@
             </form>
             <% } %>
     </div>
-    <div class="col">
+    <div id="numberSequenceStatContainer" class="col">
       <h2>Number Sequence Stats</h2>
       <% if(!numberSequenceTest.length) {%>
         <h4>No Stats Yet - Take a Test to record progress!</h4>
@@ -130,6 +127,10 @@
     </div>
   </div>
 </section>
+
+<!-- D3 Script -->
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script type="text/javascript" src="/js/profile.js"></script>
 
 </body>
 

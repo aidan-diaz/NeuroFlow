@@ -91,7 +91,7 @@ h1 {
   text-align: center;
 }
 
-div {
+.target {
   justify-content: center;
   align-items: center;
   border: 2px solid black;
@@ -103,7 +103,7 @@ div {
   background: radial-gradient(circle, #0D446C, #167DC6);
   background-size: contain;
 }
-div:hover {
+.target:hover {
   cursor: crosshair;
 }
 
