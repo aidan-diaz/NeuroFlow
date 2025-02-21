@@ -119,9 +119,6 @@ const lastTenRecallScoresExpert = convertScoresToObjs(recallScoresExpert)
 const recallScoresImpossible = getScores('recallScoresImpossible')
 const lastTenRecallScoresImpossible = convertScoresToObjs(recallScoresImpossible)
 
-
-// console.log(recallScoresMedium)
-
 // Declare the x (horizontal position) scale.
 const recallChartX = d3.scaleLinear()
     .domain([1, 10])
@@ -155,9 +152,45 @@ appendLine(recallSVG, lastTenRecallScoresImpossible, recallScoreImpossibleLine, 
 // Append the SVG element.
 recallChartContainer.append(recallSVG.node());
 
-//(medium)
-
-
-
-
 //NUMBER SEQUENCE CHART MODULE
+
+// (easy)
+//this chart goes from 1-20
+
+// const recallScoresMedium = getScores('recallScoresMedium')
+// const lastTenRecallScoresMedium = convertScoresToObjs(recallScoresMedium)
+
+// numberSequenceChartContainer
+
+// Declare the x (horizontal position) scale.
+const numberSequenceChartX = d3.scaleLinear()
+    .domain([1, 10])
+    .range([marginLeft, width - marginRight]);
+
+// Declare the y (vertical position) scale.
+const numberSequenceChartY = d3.scaleLinear()
+    .domain([0, 20])
+    .range([height - marginBottom, marginTop]);
+
+// const recallScoreEasyLine = defineLine(recallChartX, recallChartY)
+// const recallScoreMediumLine = defineLine(recallChartX, recallChartY)
+// const recallScoreHardLine = defineLine(recallChartX, recallChartY)
+// const recallScoreExpertLine = defineLine(recallChartX, recallChartY)
+// const recallScoreImpossibleLine = defineLine(recallChartX, recallChartY)
+
+// Create the SVG container.
+const nubmerSequenceSVG = d3.create("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+//add x and y axis and lines to chart
+addXAxis(nubmerSequenceSVG, numberSequenceChartX)
+addYAxis(nubmerSequenceSVG, numberSequenceChartY)
+// appendLine(recallSVG, lastTenRecallScoresEasy, recallScoreEasyLine, 'red')
+// appendLine(recallSVG, lastTenRecallScoresMedium, recallScoreMediumLine, 'black')
+// appendLine(recallSVG, lastTenRecallScoresHard, recallScoreHardLine, 'green')
+// appendLine(recallSVG, lastTenRecallScoresExpert, recallScoreExpertLine, 'blue')
+// appendLine(recallSVG, lastTenRecallScoresImpossible, recallScoreImpossibleLine, 'orange')
+
+// Append the SVG element.
+numberSequenceChartContainer.append(nubmerSequenceSVG.node());
