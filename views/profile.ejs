@@ -92,28 +92,23 @@
         <h4>No Stats Yet - Take a Test to record progress!</h4>
         <% } %>
           <% for(var i=0; i<numberSequenceTest.length; i++) {%>
-            <h3>All Scores (Easy):</h3>
-            <p class="numberSequenceScoresEasy">
+            <p class="numberSequenceScoresEasy allScores">
               <%= numberSequenceTest[i].easyScores %>
             </p>
             <h3>High Score (Easy): <span><%= numberSequenceTest[i].easyHighScore %></span></h3>
-            <h3>All Scores (Medium):</h3>
-            <p class="numberSequenceScoresMedium">
+            <p class="numberSequenceScoresMedium allScores">
               <%= numberSequenceTest[i].mediumScores %>
             </p>
             <h3>High Score (Medium): <span><%= numberSequenceTest[i].mediumHighScore %></span></h3>
-            <h3>All Scores (Hard):</h3>
-            <p class="numberSequenceScoresHard">
+            <p class="numberSequenceScoresHard allScores">
               <%= numberSequenceTest[i].hardScores %>
             </p>
             <h3>High Score (Hard): <span><%= numberSequenceTest[i].hardHighScore %></span></h3>
-            <h3>All Scores (Expert):</h3>
-            <p class="numberSequenceScoresExpert">
+            <p class="numberSequenceScoresExpert allScores">
               <%= numberSequenceTest[i].expertScores %>
             </p>
             <h3>High Score (Expert): <span><%= numberSequenceTest[i].expertHighScore %></span></h3>
-            <h3>All Scores (Impossible):</h3>
-            <p class="numberSequenceScoresImpossible">
+            <p class="numberSequenceScoresImpossible allScores">
               <%= numberSequenceTest[i].impossibleScores %>
             </p>
             <h3>High Score (Impossible): <span><%= numberSequenceTest[i].impossibleHighScore %></span></h3>

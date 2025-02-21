@@ -97,3 +97,10 @@ header {
 .allScores {
     display: none;
 }
+
+main,
+#activeRecallStatContainer,
+#reactionTestStatContainer,
+#numberSequenceStatContainer {
+  padding-bottom: 10rem;
+}
