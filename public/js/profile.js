@@ -155,12 +155,30 @@ recallChartContainer.append(recallSVG.node());
 //NUMBER SEQUENCE CHART MODULE
 
 // (easy)
-//this chart goes from 1-20
 
-// const recallScoresMedium = getScores('recallScoresMedium')
-// const lastTenRecallScoresMedium = convertScoresToObjs(recallScoresMedium)
+const numberSequenceScoresEasy = getScores('numberSequenceScoresEasy')
+const lastTenNumberSequenceScoresEasy = convertScoresToObjs(numberSequenceScoresEasy)
+// console.log(lastTenNumberSequenceScoresEasy)
 
-// numberSequenceChartContainer
+// (medium)
+
+const numberSequenceScoresMedium = getScores('numberSequenceScoresMedium')
+const lastTenNumberSequenceScoresMedium = convertScoresToObjs(numberSequenceScoresMedium)
+
+// (hard)
+
+const numberSequenceScoresHard = getScores('numberSequenceScoresHard')
+const lastTenNumberSequenceScoresHard = convertScoresToObjs(numberSequenceScoresHard)
+
+// (expert)
+
+const numberSequenceScoresExpert = getScores('numberSequenceScoresExpert')
+const lastTenNumberSequenceScoresExpert = convertScoresToObjs(numberSequenceScoresExpert)
+
+// (impossible)
+
+const numberSequenceScoresImpossible = getScores('numberSequenceScoresImpossible')
+const lastTenNumberSequenceScoresImpossible = convertScoresToObjs(numberSequenceScoresImpossible)
 
 // Declare the x (horizontal position) scale.
 const numberSequenceChartX = d3.scaleLinear()
@@ -168,15 +186,16 @@ const numberSequenceChartX = d3.scaleLinear()
     .range([marginLeft, width - marginRight]);
 
 // Declare the y (vertical position) scale.
+//this chart goes from 1-20
 const numberSequenceChartY = d3.scaleLinear()
     .domain([0, 20])
     .range([height - marginBottom, marginTop]);
 
-// const recallScoreEasyLine = defineLine(recallChartX, recallChartY)
-// const recallScoreMediumLine = defineLine(recallChartX, recallChartY)
-// const recallScoreHardLine = defineLine(recallChartX, recallChartY)
-// const recallScoreExpertLine = defineLine(recallChartX, recallChartY)
-// const recallScoreImpossibleLine = defineLine(recallChartX, recallChartY)
+const numberSequenceEasyLine = defineLine(numberSequenceChartX, numberSequenceChartY)
+const numberSequenceMediumLine = defineLine(numberSequenceChartX, numberSequenceChartY)
+const numberSequenceHardLine = defineLine(numberSequenceChartX, numberSequenceChartY)
+const numberSequenceExpertLine = defineLine(numberSequenceChartX, numberSequenceChartY)
+const numberSequenceImpossibleLine = defineLine(numberSequenceChartX, numberSequenceChartY)
 
 // Create the SVG container.
 const nubmerSequenceSVG = d3.create("svg")
@@ -186,11 +205,11 @@ const nubmerSequenceSVG = d3.create("svg")
 //add x and y axis and lines to chart
 addXAxis(nubmerSequenceSVG, numberSequenceChartX)
 addYAxis(nubmerSequenceSVG, numberSequenceChartY)
-// appendLine(recallSVG, lastTenRecallScoresEasy, recallScoreEasyLine, 'red')
-// appendLine(recallSVG, lastTenRecallScoresMedium, recallScoreMediumLine, 'black')
-// appendLine(recallSVG, lastTenRecallScoresHard, recallScoreHardLine, 'green')
-// appendLine(recallSVG, lastTenRecallScoresExpert, recallScoreExpertLine, 'blue')
-// appendLine(recallSVG, lastTenRecallScoresImpossible, recallScoreImpossibleLine, 'orange')
+appendLine(nubmerSequenceSVG, lastTenNumberSequenceScoresEasy, numberSequenceEasyLine, 'red')
+appendLine(nubmerSequenceSVG, lastTenNumberSequenceScoresMedium, numberSequenceMediumLine, 'black')
+appendLine(nubmerSequenceSVG, lastTenNumberSequenceScoresHard, numberSequenceHardLine, 'green')
+appendLine(nubmerSequenceSVG, lastTenNumberSequenceScoresExpert, numberSequenceExpertLine, 'blue')
+appendLine(nubmerSequenceSVG, lastTenNumberSequenceScoresImpossible, numberSequenceImpossibleLine, 'orange')
 
 // Append the SVG element.
 numberSequenceChartContainer.append(nubmerSequenceSVG.node());
