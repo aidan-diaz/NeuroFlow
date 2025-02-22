@@ -18,7 +18,7 @@ function getScores(className) {
 
 //CONVERT LAST TEN SCORES INTO OBJECTS TO DRAW LINES LATER
 function convertScoresToObjs(scores) {
-    return scores.slice(reactionScores.length - 10).map((e, i) => {
+    return scores.slice(-10).map((e, i) => {
         const obj = {}
         obj['x'] = i + 1
         obj['y'] = e
@@ -118,49 +118,6 @@ function addDots(svg, datum, chartX, chartY, color) {
       .attr("r", 5)
 }
 
-//REACTION TEST CHART MODULE
-
-
-const reactionScores = getScores('reactionScores')
-const lastTenReactionScores = convertScoresToObjs(reactionScores)
-
-// console.log(lastTenReactionScores)
-
-// Declare the x (horizontal position) scale.
-const reactionChartX = d3.scaleLinear()
-    .domain([1, 10])
-    .range([marginLeft, width - marginRight]);
-
-// Declare the y (vertical position) scale.
-const reactionChartY = d3.scaleLinear()
-    .domain([0, 100])
-    .range([height - marginBottom, marginTop])
-
-const reactionScoreLine = defineLine(reactionChartX, reactionChartY)
-
-// Create the SVG container.
-const reactionSVG = d3.create("svg")
-    .attr("width", width)
-    .attr("height", height)
-
-// Add the x-axis.
-addXAxis(reactionSVG, reactionChartX)
-addVerticalGridLines(reactionSVG, reactionChartX)
-
-// Add the y-axis.
-addYAxis(reactionSVG, reactionChartY)
-addHorizontalGridLines(reactionSVG, reactionChartY)
-
-//append line + dots for reaction test data
-appendXAxisText(reactionSVG)
-appendYAxisText(reactionSVG)
-appendLine(reactionSVG, lastTenReactionScores, reactionScoreLine, 'blue')
-addDots(reactionSVG, lastTenReactionScores, reactionChartX, reactionChartY, 'blue')
-
-// Append the SVG element.
-reactionChartContainer.append(reactionSVG.node());
-
-
 //ACTIVE RECALL CHART MODULE
 
 // (easy)
@@ -228,6 +185,48 @@ addDots(recallSVG, lastTenRecallScoresImpossible, recallChartX, recallChartY, 'o
 
 // Append the SVG element.
 recallChartContainer.append(recallSVG.node());
+
+//REACTION TEST CHART MODULE
+
+const reactionScores = getScores('reactionScores')
+const lastTenReactionScores = convertScoresToObjs(reactionScores)
+
+// console.log(lastTenReactionScores)
+
+// Declare the x (horizontal position) scale.
+const reactionChartX = d3.scaleLinear()
+    .domain([1, 10])
+    .range([marginLeft, width - marginRight]);
+
+// Declare the y (vertical position) scale.
+const reactionChartY = d3.scaleLinear()
+    .domain([0, 100])
+    .range([height - marginBottom, marginTop])
+
+const reactionScoreLine = defineLine(reactionChartX, reactionChartY)
+
+// Create the SVG container.
+const reactionSVG = d3.create("svg")
+    .attr("width", width)
+    .attr("height", height)
+
+// Add the x-axis.
+addXAxis(reactionSVG, reactionChartX)
+addVerticalGridLines(reactionSVG, reactionChartX)
+
+// Add the y-axis.
+addYAxis(reactionSVG, reactionChartY)
+addHorizontalGridLines(reactionSVG, reactionChartY)
+
+//append line + dots for reaction test data
+appendXAxisText(reactionSVG)
+appendYAxisText(reactionSVG)
+appendLine(reactionSVG, lastTenReactionScores, reactionScoreLine, 'blue')
+addDots(reactionSVG, lastTenReactionScores, reactionChartX, reactionChartY, 'blue')
+
+// Append the SVG element.
+reactionChartContainer.append(reactionSVG.node());
+
 
 //NUMBER SEQUENCE CHART MODULE
 
