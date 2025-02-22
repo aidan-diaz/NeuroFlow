@@ -37,13 +37,14 @@ function defineLine(xAxis, yAxis) {
 function addXAxis(svg, chartX) {
     return svg.append("g")
     .attr("transform", `translate(0,${height - marginBottom})`)
-    .call(d3.axisBottom(chartX));
+    .call(d3.axisBottom(chartX))
+    
 }
 
 function addYAxis(svg, chartY) {
     return svg.append("g")
     .attr("transform", `translate(${marginLeft},0)`)
-    .call(d3.axisLeft(chartY));
+    .call(d3.axisLeft(chartY))
 }
 
 function appendLine(svg, datum, line, color) {
@@ -51,8 +52,20 @@ function appendLine(svg, datum, line, color) {
     .datum(datum)
     .attr("fill", "none")
     .attr("stroke", color)
-    .attr("stroke-width", 1)
+    .attr("stroke-width", 3)
     .attr("d", line)
+}
+
+function addDots(svg, datum, chartX, chartY, color) {
+    return svg.selectAll("myCircles")
+    .data(datum)
+    .enter()
+    .append("circle")
+      .attr("fill", color)
+      .attr("stroke", "none")
+      .attr("cx", function(d) { return chartX(d.x) })
+      .attr("cy", function(d) { return chartY(d.y) })
+      .attr("r", 5)
 }
 
 //REACTION TEST CHART MODULE
@@ -86,8 +99,9 @@ addXAxis(reactionSVG, reactionChartX)
 // Add the y-axis.
 addYAxis(reactionSVG, reactionChartY)
 
-//append line for reaction test data
+//append line + dots for reaction test data
 appendLine(reactionSVG, lastTenReactionScores, reactionScoreLine, 'blue')
+addDots(reactionSVG, lastTenReactionScores, reactionChartX, reactionChartY, 'blue')
 
 // Append the SVG element.
 reactionChartContainer.append(reactionSVG.node());
@@ -140,14 +154,19 @@ const recallSVG = d3.create("svg")
     .attr("width", width)
     .attr("height", height);
 
-//create axes and line for recall test data (easy)
+//create axes and lines + dots for recall test data (easy)
 addXAxis(recallSVG, recallChartX)
 addYAxis(recallSVG, recallChartY)
 appendLine(recallSVG, lastTenRecallScoresEasy, recallScoreEasyLine, 'red')
+addDots(recallSVG, lastTenRecallScoresEasy, recallChartX, recallChartY, 'red')
 appendLine(recallSVG, lastTenRecallScoresMedium, recallScoreMediumLine, 'black')
+addDots(recallSVG, lastTenRecallScoresMedium, recallChartX, recallChartY, 'black')
 appendLine(recallSVG, lastTenRecallScoresHard, recallScoreHardLine, 'green')
+addDots(recallSVG, lastTenRecallScoresHard, recallChartX, recallChartY, 'green')
 appendLine(recallSVG, lastTenRecallScoresExpert, recallScoreExpertLine, 'blue')
+addDots(recallSVG, lastTenRecallScoresExpert, recallChartX, recallChartY, 'blue')
 appendLine(recallSVG, lastTenRecallScoresImpossible, recallScoreImpossibleLine, 'orange')
+addDots(recallSVG, lastTenRecallScoresImpossible, recallChartX, recallChartY, 'orange')
 
 // Append the SVG element.
 recallChartContainer.append(recallSVG.node());
@@ -202,14 +221,19 @@ const nubmerSequenceSVG = d3.create("svg")
     .attr("width", width)
     .attr("height", height);
 
-//add x and y axis and lines to chart
+//add x and y axis and lines + dots to chart
 addXAxis(nubmerSequenceSVG, numberSequenceChartX)
 addYAxis(nubmerSequenceSVG, numberSequenceChartY)
 appendLine(nubmerSequenceSVG, lastTenNumberSequenceScoresEasy, numberSequenceEasyLine, 'red')
+addDots(nubmerSequenceSVG, lastTenNumberSequenceScoresEasy, numberSequenceChartX, numberSequenceChartY, 'red')
 appendLine(nubmerSequenceSVG, lastTenNumberSequenceScoresMedium, numberSequenceMediumLine, 'black')
+addDots(nubmerSequenceSVG, lastTenNumberSequenceScoresMedium, numberSequenceChartX, numberSequenceChartY, 'black')
 appendLine(nubmerSequenceSVG, lastTenNumberSequenceScoresHard, numberSequenceHardLine, 'green')
+addDots(nubmerSequenceSVG, lastTenNumberSequenceScoresHard, numberSequenceChartX, numberSequenceChartY, 'green')
 appendLine(nubmerSequenceSVG, lastTenNumberSequenceScoresExpert, numberSequenceExpertLine, 'blue')
+addDots(nubmerSequenceSVG, lastTenNumberSequenceScoresExpert, numberSequenceChartX, numberSequenceChartY, 'blue')
 appendLine(nubmerSequenceSVG, lastTenNumberSequenceScoresImpossible, numberSequenceImpossibleLine, 'orange')
+addDots(nubmerSequenceSVG, lastTenNumberSequenceScoresImpossible, numberSequenceChartX, numberSequenceChartY, 'orange')
 
 // Append the SVG element.
 numberSequenceChartContainer.append(nubmerSequenceSVG.node());
