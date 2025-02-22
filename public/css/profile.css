@@ -83,6 +83,10 @@ header {
   margin-bottom: 5rem;
 }
 
+#colorKeyHeader {
+  margin-top: 1.5rem;
+}
+
 #colorKey {
   display: flex;
   flex-wrap: wrap;

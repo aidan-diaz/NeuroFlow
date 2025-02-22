@@ -162,8 +162,7 @@ const recallScoreImpossibleLine = defineLine(recallChartX, recallChartY)
 
 // Create the SVG container.
 const recallSVG = d3.create("svg")
-    .attr("width", width)
-    .attr("height", height);
+    .attr("viewBox", `0 0 ${width} ${height}`)
 
 //create axes and lines + dots for recall test data (easy)
 addXAxis(recallSVG, recallChartX)
@@ -207,8 +206,10 @@ const reactionScoreLine = defineLine(reactionChartX, reactionChartY)
 
 // Create the SVG container.
 const reactionSVG = d3.create("svg")
-    .attr("width", width)
-    .attr("height", height)
+//trying viewbox for resizing purposes
+    .attr("viewBox", `0 0 ${width} ${height}`)
+    // .attr("width", width)
+    // .attr("height", height)
 
 // Add the x-axis.
 addXAxis(reactionSVG, reactionChartX)
@@ -275,8 +276,7 @@ const numberSequenceImpossibleLine = defineLine(numberSequenceChartX, numberSequ
 
 // Create the SVG container.
 const nubmerSequenceSVG = d3.create("svg")
-    .attr("width", width)
-    .attr("height", height);
+.attr("viewBox", `0 0 ${width} ${height}`)
 
 //add x and y axis and lines + dots to chart
 addXAxis(nubmerSequenceSVG, numberSequenceChartX)
