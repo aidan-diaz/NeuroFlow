@@ -47,6 +47,56 @@ function addYAxis(svg, chartY) {
     .call(d3.axisLeft(chartY))
 }
 
+function addVerticalGridLines(svg, xAxis) {
+    return svg.selectAll("xGrid")
+    .data(xAxis.ticks().slice(1))
+    .join("line")
+    .attr("x1", d => xAxis(d))
+    .attr("x2", d => xAxis(d))
+    .attr("y1", marginTop)
+    .attr("y2", height - marginBottom)
+    .attr("stroke", "gray")
+    .attr("stroke-width", .5)
+}
+
+function addHorizontalGridLines(svg, yAxis) {
+    return svg.selectAll("xGrid")
+    .data(yAxis.ticks().slice(1))
+    .join("line")
+    .attr("x1", marginLeft)
+    .attr("x2", width - marginRight)
+    .attr("y1", d => yAxis(d))
+    .attr("y2", d => yAxis(d))
+    .attr("stroke", "gray")
+    .attr("stroke-width", .5)
+}
+
+function appendXAxisText(svg) {
+    return svg.append("text")
+    .attr("transform", 'translate(320, 386)')
+    .attr("dy", "1em")
+    .style("text-anchor", "middle")
+    .style("font-size", "12px")
+    .style("font-family", "bold")
+    .style("font-weight", "bold")
+    .style("fill", "black")
+    .text("last 10 attempts")
+}
+
+function appendYAxisText(svg) {
+    return svg.append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", -5)
+    .attr("x", 0 - (height / 2))
+    .attr("dy", "1em")
+    .style("text-anchor", "middle")
+    .style("font-size", "16px")
+    .style("font-family", "bold")
+    .style("font-weight", "bold")
+    .style("fill", "black")
+    .text("scores")
+}
+
 function appendLine(svg, datum, line, color) {
     return svg.append("path")
     .datum(datum)
@@ -91,15 +141,19 @@ const reactionScoreLine = defineLine(reactionChartX, reactionChartY)
 // Create the SVG container.
 const reactionSVG = d3.create("svg")
     .attr("width", width)
-    .attr("height", height);
+    .attr("height", height)
 
 // Add the x-axis.
 addXAxis(reactionSVG, reactionChartX)
+addVerticalGridLines(reactionSVG, reactionChartX)
 
 // Add the y-axis.
 addYAxis(reactionSVG, reactionChartY)
+addHorizontalGridLines(reactionSVG, reactionChartY)
 
 //append line + dots for reaction test data
+appendXAxisText(reactionSVG)
+appendYAxisText(reactionSVG)
 appendLine(reactionSVG, lastTenReactionScores, reactionScoreLine, 'blue')
 addDots(reactionSVG, lastTenReactionScores, reactionChartX, reactionChartY, 'blue')
 
@@ -157,6 +211,10 @@ const recallSVG = d3.create("svg")
 //create axes and lines + dots for recall test data (easy)
 addXAxis(recallSVG, recallChartX)
 addYAxis(recallSVG, recallChartY)
+addVerticalGridLines(recallSVG, recallChartX)
+addHorizontalGridLines(recallSVG, recallChartY)
+appendXAxisText(recallSVG)
+appendYAxisText(recallSVG)
 appendLine(recallSVG, lastTenRecallScoresEasy, recallScoreEasyLine, 'red')
 addDots(recallSVG, lastTenRecallScoresEasy, recallChartX, recallChartY, 'red')
 appendLine(recallSVG, lastTenRecallScoresMedium, recallScoreMediumLine, 'black')
@@ -224,6 +282,10 @@ const nubmerSequenceSVG = d3.create("svg")
 //add x and y axis and lines + dots to chart
 addXAxis(nubmerSequenceSVG, numberSequenceChartX)
 addYAxis(nubmerSequenceSVG, numberSequenceChartY)
+addVerticalGridLines(nubmerSequenceSVG, numberSequenceChartX)
+addHorizontalGridLines(nubmerSequenceSVG, numberSequenceChartY)
+appendXAxisText(nubmerSequenceSVG)
+appendYAxisText(nubmerSequenceSVG)
 appendLine(nubmerSequenceSVG, lastTenNumberSequenceScoresEasy, numberSequenceEasyLine, 'red')
 addDots(nubmerSequenceSVG, lastTenNumberSequenceScoresEasy, numberSequenceChartX, numberSequenceChartY, 'red')
 appendLine(nubmerSequenceSVG, lastTenNumberSequenceScoresMedium, numberSequenceMediumLine, 'black')
