@@ -10,15 +10,40 @@ const marginRight = 20;
 const marginBottom = 30;
 const marginLeft = 40;
 
-function getScores(className) {
-    return document.querySelector(`.${className}`) ? 
-    document.querySelector(`.${className}`).innerText.split(',').map(Number)
-    : []
-}
+    fetch('/getAllScores', {
+        method: 'get',
+      })
+        .then(response => {
+          if (response.ok) return response.json()
+        })
+        .then(data => {
+            console.log(data)
+            //GET THE LAST TEN SCORES FOR EACH TEST AND/OR DIFFICULTY
+            let lastTenRecallScoresEasy = getScores(data, 'recallTest', 'easyScores')
+            let lastTenRecallScoresMedium = getScores(data, 'recallTest', 'mediumScores')
+            let lastTenRecallScoresHard = getScores(data, 'recallTest', 'hardScores')
+            let lastTenRecallScoresExpert = getScores(data, 'recallTest', 'expertScores')
+            let lastTenRecallScoresImpossible = getScores(data, 'recallTest', 'impossibleScores')
+
+            let lastTenReactionScores = getScores(data, 'reactionTest', 'scores')
+
+            let lastTenNumberSequenceScoresEasy = getScores(data, 'numberSequenceTest', 'easyScores')
+            let lastTenNumberSequenceScoresMedium = getScores(data, 'numberSequenceTest', 'mediumScores')
+            let lastTenNumberSequenceScoresHard = getScores(data, 'numberSequenceTest', 'hardScores')
+            let lastTenNumberSequenceScoresExpert = getScores(data, 'numberSequenceTest', 'expertScores')
+            let lastTenNumberSequenceScoresImpossible = getScores(data, 'numberSequenceTest', 'impossibleScores')
+
+            createRecallChart(lastTenRecallScoresEasy, lastTenRecallScoresMedium, lastTenRecallScoresHard, lastTenRecallScoresExpert, lastTenRecallScoresImpossible)
+            createReactionChart(lastTenReactionScores)
+            createNumberSequenceChart(lastTenNumberSequenceScoresEasy, lastTenNumberSequenceScoresMedium, lastTenNumberSequenceScoresHard, lastTenNumberSequenceScoresExpert, lastTenNumberSequenceScoresImpossible)
+        })
+        .catch(err => {
+          console.log(`error ${err}`)
+      })
 
 //CONVERT LAST TEN SCORES INTO OBJECTS TO DRAW LINES LATER
-function convertScoresToObjs(scores) {
-    return scores.slice(-10).map((e, i) => {
+function getScores(data, testType, property) {
+    return data[testType][0][property].slice(-10).map((e, i) => {
         const obj = {}
         obj['x'] = i + 1
         obj['y'] = e
@@ -128,186 +153,131 @@ function addDots(svg, datum, chartX, chartY, color) {
       .attr("r", 5)
 }
 
-//ACTIVE RECALL CHART MODULE
+function createRecallChart(lastTenRecallScoresEasy, lastTenRecallScoresMedium, lastTenRecallScoresHard, lastTenRecallScoresExpert, lastTenRecallScoresImpossible) {
+    // Declare the x (horizontal position) scale.
+    const recallChartX = d3.scaleLinear()
+        .domain([1, 10])
+        .range([marginLeft, width - marginRight]);
 
-// (easy)
-const recallScoresEasy = getScores('recallScoresEasy')
-const lastTenRecallScoresEasy = convertScoresToObjs(recallScoresEasy)
+    // Declare the y (vertical position) scale.
+    const recallChartY = d3.scaleLinear()
+        .domain([0, 50])
+        .range([height - marginBottom, marginTop]);
 
-// (medium)
+    const recallScoreEasyLine = defineLine(recallChartX, recallChartY)
+    const recallScoreMediumLine = defineLine(recallChartX, recallChartY)
+    const recallScoreHardLine = defineLine(recallChartX, recallChartY)
+    const recallScoreExpertLine = defineLine(recallChartX, recallChartY)
+    const recallScoreImpossibleLine = defineLine(recallChartX, recallChartY)
 
-const recallScoresMedium = getScores('recallScoresMedium')
-const lastTenRecallScoresMedium = convertScoresToObjs(recallScoresMedium)
+    // Create the SVG container.
+    const recallSVG = d3.create("svg")
+        .attr("viewBox", `0 0 ${width} ${height}`)
 
-// (hard)
+    //create axes and lines + dots for recall test data (easy)
+    addXAxis(recallSVG, recallChartX)
+    addYAxis(recallSVG, recallChartY)
+    addVerticalGridLines(recallSVG, recallChartX)
+    addHorizontalGridLines(recallSVG, recallChartY)
+    appendTitle(recallSVG, 'ACTIVE RECALL STATS')
+    appendXAxisText(recallSVG)
+    appendYAxisText(recallSVG)
+    appendLine(recallSVG, lastTenRecallScoresEasy, recallScoreEasyLine, 'red')
+    addDots(recallSVG, lastTenRecallScoresEasy, recallChartX, recallChartY, 'red')
+    appendLine(recallSVG, lastTenRecallScoresMedium, recallScoreMediumLine, 'black')
+    addDots(recallSVG, lastTenRecallScoresMedium, recallChartX, recallChartY, 'black')
+    appendLine(recallSVG, lastTenRecallScoresHard, recallScoreHardLine, 'green')
+    addDots(recallSVG, lastTenRecallScoresHard, recallChartX, recallChartY, 'green')
+    appendLine(recallSVG, lastTenRecallScoresExpert, recallScoreExpertLine, 'blue')
+    addDots(recallSVG, lastTenRecallScoresExpert, recallChartX, recallChartY, 'blue')
+    appendLine(recallSVG, lastTenRecallScoresImpossible, recallScoreImpossibleLine, 'orange')
+    addDots(recallSVG, lastTenRecallScoresImpossible, recallChartX, recallChartY, 'orange')
 
-const recallScoresHard = getScores('recallScoresHard')
-const lastTenRecallScoresHard = convertScoresToObjs(recallScoresHard)
+    // Append the SVG element.
+    recallChartContainer.append(recallSVG.node());
+}
 
-// (expert)
-
-const recallScoresExpert = getScores('recallScoresExpert')
-const lastTenRecallScoresExpert = convertScoresToObjs(recallScoresExpert)
-
-// (impossible)
-
-const recallScoresImpossible = getScores('recallScoresImpossible')
-const lastTenRecallScoresImpossible = convertScoresToObjs(recallScoresImpossible)
-
-// Declare the x (horizontal position) scale.
-const recallChartX = d3.scaleLinear()
+function createReactionChart(lastTenReactionScores) {
+    // Declare the x (horizontal position) scale.
+    const reactionChartX = d3.scaleLinear()
     .domain([1, 10])
     .range([marginLeft, width - marginRight]);
 
-// Declare the y (vertical position) scale.
-const recallChartY = d3.scaleLinear()
-    .domain([0, 50])
-    .range([height - marginBottom, marginTop]);
-
-const recallScoreEasyLine = defineLine(recallChartX, recallChartY)
-const recallScoreMediumLine = defineLine(recallChartX, recallChartY)
-const recallScoreHardLine = defineLine(recallChartX, recallChartY)
-const recallScoreExpertLine = defineLine(recallChartX, recallChartY)
-const recallScoreImpossibleLine = defineLine(recallChartX, recallChartY)
-
-// Create the SVG container.
-const recallSVG = d3.create("svg")
-    .attr("viewBox", `0 0 ${width} ${height}`)
-
-//create axes and lines + dots for recall test data (easy)
-addXAxis(recallSVG, recallChartX)
-addYAxis(recallSVG, recallChartY)
-addVerticalGridLines(recallSVG, recallChartX)
-addHorizontalGridLines(recallSVG, recallChartY)
-appendTitle(recallSVG, 'ACTIVE RECALL STATS')
-appendXAxisText(recallSVG)
-appendYAxisText(recallSVG)
-appendLine(recallSVG, lastTenRecallScoresEasy, recallScoreEasyLine, 'red')
-addDots(recallSVG, lastTenRecallScoresEasy, recallChartX, recallChartY, 'red')
-appendLine(recallSVG, lastTenRecallScoresMedium, recallScoreMediumLine, 'black')
-addDots(recallSVG, lastTenRecallScoresMedium, recallChartX, recallChartY, 'black')
-appendLine(recallSVG, lastTenRecallScoresHard, recallScoreHardLine, 'green')
-addDots(recallSVG, lastTenRecallScoresHard, recallChartX, recallChartY, 'green')
-appendLine(recallSVG, lastTenRecallScoresExpert, recallScoreExpertLine, 'blue')
-addDots(recallSVG, lastTenRecallScoresExpert, recallChartX, recallChartY, 'blue')
-appendLine(recallSVG, lastTenRecallScoresImpossible, recallScoreImpossibleLine, 'orange')
-addDots(recallSVG, lastTenRecallScoresImpossible, recallChartX, recallChartY, 'orange')
-
-// Append the SVG element.
-recallChartContainer.append(recallSVG.node());
-
-//REACTION TEST CHART MODULE
-
-const reactionScores = getScores('reactionScores')
-const lastTenReactionScores = convertScoresToObjs(reactionScores)
-
-// console.log(lastTenReactionScores)
-
-// Declare the x (horizontal position) scale.
-const reactionChartX = d3.scaleLinear()
-    .domain([1, 10])
-    .range([marginLeft, width - marginRight]);
-
-// Declare the y (vertical position) scale.
-const reactionChartY = d3.scaleLinear()
+    // Declare the y (vertical position) scale.
+    const reactionChartY = d3.scaleLinear()
     .domain([0, 100])
     .range([height - marginBottom, marginTop])
 
-const reactionScoreLine = defineLine(reactionChartX, reactionChartY)
+    const reactionScoreLine = defineLine(reactionChartX, reactionChartY)
 
-// Create the SVG container.
-const reactionSVG = d3.create("svg")
-//trying viewbox for resizing purposes
+    // Create the SVG container.
+    const reactionSVG = d3.create("svg")
+    //trying viewbox for resizing purposes
     .attr("viewBox", `0 0 ${width} ${height}`)
-    // .attr("width", width)
-    // .attr("height", height)
 
-// Add the x-axis.
-addXAxis(reactionSVG, reactionChartX)
-addVerticalGridLines(reactionSVG, reactionChartX)
+    // Add the x-axis.
+    addXAxis(reactionSVG, reactionChartX)
+    addVerticalGridLines(reactionSVG, reactionChartX)
 
-// Add the y-axis.
-addYAxis(reactionSVG, reactionChartY)
-addHorizontalGridLines(reactionSVG, reactionChartY)
+    // Add the y-axis.
+    addYAxis(reactionSVG, reactionChartY)
+    addHorizontalGridLines(reactionSVG, reactionChartY)
 
-//append line + dots for reaction test data
-appendTitle(reactionSVG, 'REACTION STATS')
-appendXAxisText(reactionSVG)
-appendYAxisText(reactionSVG)
-appendLine(reactionSVG, lastTenReactionScores, reactionScoreLine, 'blue')
-addDots(reactionSVG, lastTenReactionScores, reactionChartX, reactionChartY, 'blue')
+    //append line + dots for reaction test data
+    appendTitle(reactionSVG, 'REACTION STATS')
+    appendXAxisText(reactionSVG)
+    appendYAxisText(reactionSVG)
+    appendLine(reactionSVG, lastTenReactionScores, reactionScoreLine, 'blue')
+    addDots(reactionSVG, lastTenReactionScores, reactionChartX, reactionChartY, 'blue')
 
-// Append the SVG element.
-reactionChartContainer.append(reactionSVG.node());
+    // Append the SVG element.
+    reactionChartContainer.append(reactionSVG.node());
+}
 
-
-//NUMBER SEQUENCE CHART MODULE
-
-// (easy)
-
-const numberSequenceScoresEasy = getScores('numberSequenceScoresEasy')
-const lastTenNumberSequenceScoresEasy = convertScoresToObjs(numberSequenceScoresEasy)
-// console.log(lastTenNumberSequenceScoresEasy)
-
-// (medium)
-
-const numberSequenceScoresMedium = getScores('numberSequenceScoresMedium')
-const lastTenNumberSequenceScoresMedium = convertScoresToObjs(numberSequenceScoresMedium)
-
-// (hard)
-
-const numberSequenceScoresHard = getScores('numberSequenceScoresHard')
-const lastTenNumberSequenceScoresHard = convertScoresToObjs(numberSequenceScoresHard)
-
-// (expert)
-
-const numberSequenceScoresExpert = getScores('numberSequenceScoresExpert')
-const lastTenNumberSequenceScoresExpert = convertScoresToObjs(numberSequenceScoresExpert)
-
-// (impossible)
-
-const numberSequenceScoresImpossible = getScores('numberSequenceScoresImpossible')
-const lastTenNumberSequenceScoresImpossible = convertScoresToObjs(numberSequenceScoresImpossible)
-
-// Declare the x (horizontal position) scale.
-const numberSequenceChartX = d3.scaleLinear()
+function createNumberSequenceChart(lastTenNumberSequenceScoresEasy, lastTenNumberSequenceScoresMedium, lastTenNumberSequenceScoresHard, lastTenNumberSequenceScoresExpert, lastTenNumberSequenceScoresImpossible) {
+        // Declare the x (horizontal position) scale.
+    const numberSequenceChartX = d3.scaleLinear()
     .domain([1, 10])
     .range([marginLeft, width - marginRight]);
 
-// Declare the y (vertical position) scale.
-//this chart goes from 1-20
-const numberSequenceChartY = d3.scaleLinear()
+    // Declare the y (vertical position) scale.
+    //this chart goes from 1-20
+    const numberSequenceChartY = d3.scaleLinear()
     .domain([0, 20])
     .range([height - marginBottom, marginTop]);
 
-const numberSequenceEasyLine = defineLine(numberSequenceChartX, numberSequenceChartY)
-const numberSequenceMediumLine = defineLine(numberSequenceChartX, numberSequenceChartY)
-const numberSequenceHardLine = defineLine(numberSequenceChartX, numberSequenceChartY)
-const numberSequenceExpertLine = defineLine(numberSequenceChartX, numberSequenceChartY)
-const numberSequenceImpossibleLine = defineLine(numberSequenceChartX, numberSequenceChartY)
+    const numberSequenceEasyLine = defineLine(numberSequenceChartX, numberSequenceChartY)
+    const numberSequenceMediumLine = defineLine(numberSequenceChartX, numberSequenceChartY)
+    const numberSequenceHardLine = defineLine(numberSequenceChartX, numberSequenceChartY)
+    const numberSequenceExpertLine = defineLine(numberSequenceChartX, numberSequenceChartY)
+    const numberSequenceImpossibleLine = defineLine(numberSequenceChartX, numberSequenceChartY)
 
-// Create the SVG container.
-const nubmerSequenceSVG = d3.create("svg")
-.attr("viewBox", `0 0 ${width} ${height}`)
+    // Create the SVG container.
+    const nubmerSequenceSVG = d3.create("svg")
+    .attr("viewBox", `0 0 ${width} ${height}`)
 
-//add x and y axis and lines + dots to chart
-addXAxis(nubmerSequenceSVG, numberSequenceChartX)
-addYAxis(nubmerSequenceSVG, numberSequenceChartY)
-addVerticalGridLines(nubmerSequenceSVG, numberSequenceChartX)
-addHorizontalGridLines(nubmerSequenceSVG, numberSequenceChartY)
-appendTitle(nubmerSequenceSVG, 'NUMBER SEQUENCE STATS')
-appendXAxisText(nubmerSequenceSVG)
-appendYAxisText(nubmerSequenceSVG)
-appendLine(nubmerSequenceSVG, lastTenNumberSequenceScoresEasy, numberSequenceEasyLine, 'red')
-addDots(nubmerSequenceSVG, lastTenNumberSequenceScoresEasy, numberSequenceChartX, numberSequenceChartY, 'red')
-appendLine(nubmerSequenceSVG, lastTenNumberSequenceScoresMedium, numberSequenceMediumLine, 'black')
-addDots(nubmerSequenceSVG, lastTenNumberSequenceScoresMedium, numberSequenceChartX, numberSequenceChartY, 'black')
-appendLine(nubmerSequenceSVG, lastTenNumberSequenceScoresHard, numberSequenceHardLine, 'green')
-addDots(nubmerSequenceSVG, lastTenNumberSequenceScoresHard, numberSequenceChartX, numberSequenceChartY, 'green')
-appendLine(nubmerSequenceSVG, lastTenNumberSequenceScoresExpert, numberSequenceExpertLine, 'blue')
-addDots(nubmerSequenceSVG, lastTenNumberSequenceScoresExpert, numberSequenceChartX, numberSequenceChartY, 'blue')
-appendLine(nubmerSequenceSVG, lastTenNumberSequenceScoresImpossible, numberSequenceImpossibleLine, 'orange')
-addDots(nubmerSequenceSVG, lastTenNumberSequenceScoresImpossible, numberSequenceChartX, numberSequenceChartY, 'orange')
+    //add x and y axis and lines + dots to chart
+    addXAxis(nubmerSequenceSVG, numberSequenceChartX)
+    addYAxis(nubmerSequenceSVG, numberSequenceChartY)
+    addVerticalGridLines(nubmerSequenceSVG, numberSequenceChartX)
+    addHorizontalGridLines(nubmerSequenceSVG, numberSequenceChartY)
+    appendTitle(nubmerSequenceSVG, 'NUMBER SEQUENCE STATS')
+    appendXAxisText(nubmerSequenceSVG)
+    appendYAxisText(nubmerSequenceSVG)
+    appendLine(nubmerSequenceSVG, lastTenNumberSequenceScoresEasy, numberSequenceEasyLine, 'red')
+    addDots(nubmerSequenceSVG, lastTenNumberSequenceScoresEasy, numberSequenceChartX, numberSequenceChartY, 'red')
+    appendLine(nubmerSequenceSVG, lastTenNumberSequenceScoresMedium, numberSequenceMediumLine, 'black')
+    addDots(nubmerSequenceSVG, lastTenNumberSequenceScoresMedium, numberSequenceChartX, numberSequenceChartY, 'black')
+    appendLine(nubmerSequenceSVG, lastTenNumberSequenceScoresHard, numberSequenceHardLine, 'green')
+    addDots(nubmerSequenceSVG, lastTenNumberSequenceScoresHard, numberSequenceChartX, numberSequenceChartY, 'green')
+    appendLine(nubmerSequenceSVG, lastTenNumberSequenceScoresExpert, numberSequenceExpertLine, 'blue')
+    addDots(nubmerSequenceSVG, lastTenNumberSequenceScoresExpert, numberSequenceChartX, numberSequenceChartY, 'blue')
+    appendLine(nubmerSequenceSVG, lastTenNumberSequenceScoresImpossible, numberSequenceImpossibleLine, 'orange')
+    addDots(nubmerSequenceSVG, lastTenNumberSequenceScoresImpossible, numberSequenceChartX, numberSequenceChartY, 'orange')
 
-// Append the SVG element.
-numberSequenceChartContainer.append(nubmerSequenceSVG.node());
+    // Append the SVG element.
+    numberSequenceChartContainer.append(nubmerSequenceSVG.node());
+}
+
+
+

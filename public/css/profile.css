@@ -137,10 +137,6 @@ header {
   background-color: #9bccfd;
 }
 
-.allScores {
-    display: none;
-}
-
 main,
 #activeRecallStatContainer,
 #reactionTestStatContainer,

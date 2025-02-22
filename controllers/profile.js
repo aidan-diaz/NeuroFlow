@@ -14,6 +14,16 @@ module.exports = {
           console.log(err);
         }
       },
+      getAllScores: async (req, res) => {
+        try {
+          const reactionTest = await ReactionTest.find({ user: req.user.id });
+          const recallTest = await RecallTest.find({ user: req.user.id });
+          const numberSequenceTest = await NumberSequenceTest.find({ user: req.user.id });
+          res.json({ user: req.user, reactionTest: reactionTest, recallTest: recallTest, numberSequenceTest: numberSequenceTest })
+        } catch (err) {
+          console.log(err);
+        }
+      }
 
 }
 
