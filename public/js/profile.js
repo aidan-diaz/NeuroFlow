@@ -3,8 +3,8 @@
 
 
 // Declare the chart dimensions and margins.
-const width = 640;
-const height = 400;
+const width = 500;
+const height = 280;
 const marginTop = 20;
 const marginRight = 20;
 const marginBottom = 30;
@@ -71,13 +71,24 @@ function addHorizontalGridLines(svg, yAxis) {
     .attr("stroke-width", .5)
 }
 
+function appendTitle(svg, text) {
+    return svg.append("text")
+    .attr("transform", 'translate(252.5, 0)')
+    .attr("dy", "1em")
+    .style("text-anchor", "middle")
+    .style("font-size", "16px")
+    .style("font-family", "bold")
+    .style("font-weight", "bold")
+    .style("fill", "black")
+    .text(text)
+}
+
 function appendXAxisText(svg) {
     return svg.append("text")
-    .attr("transform", 'translate(320, 386)')
+    .attr("transform", 'translate(252.5, 265)')
     .attr("dy", "1em")
     .style("text-anchor", "middle")
     .style("font-size", "12px")
-    .style("font-family", "bold")
     .style("font-weight", "bold")
     .style("fill", "black")
     .text("last 10 attempts")
@@ -90,8 +101,7 @@ function appendYAxisText(svg) {
     .attr("x", 0 - (height / 2))
     .attr("dy", "1em")
     .style("text-anchor", "middle")
-    .style("font-size", "16px")
-    .style("font-family", "bold")
+    .style("font-size", "12px")
     .style("font-weight", "bold")
     .style("fill", "black")
     .text("scores")
@@ -169,6 +179,7 @@ addXAxis(recallSVG, recallChartX)
 addYAxis(recallSVG, recallChartY)
 addVerticalGridLines(recallSVG, recallChartX)
 addHorizontalGridLines(recallSVG, recallChartY)
+appendTitle(recallSVG, 'ACTIVE RECALL STATS')
 appendXAxisText(recallSVG)
 appendYAxisText(recallSVG)
 appendLine(recallSVG, lastTenRecallScoresEasy, recallScoreEasyLine, 'red')
@@ -220,6 +231,7 @@ addYAxis(reactionSVG, reactionChartY)
 addHorizontalGridLines(reactionSVG, reactionChartY)
 
 //append line + dots for reaction test data
+appendTitle(reactionSVG, 'REACTION STATS')
 appendXAxisText(reactionSVG)
 appendYAxisText(reactionSVG)
 appendLine(reactionSVG, lastTenReactionScores, reactionScoreLine, 'blue')
@@ -283,6 +295,7 @@ addXAxis(nubmerSequenceSVG, numberSequenceChartX)
 addYAxis(nubmerSequenceSVG, numberSequenceChartY)
 addVerticalGridLines(nubmerSequenceSVG, numberSequenceChartX)
 addHorizontalGridLines(nubmerSequenceSVG, numberSequenceChartY)
+appendTitle(nubmerSequenceSVG, 'NUMBER SEQUENCE STATS')
 appendXAxisText(nubmerSequenceSVG)
 appendYAxisText(nubmerSequenceSVG)
 appendLine(nubmerSequenceSVG, lastTenNumberSequenceScoresEasy, numberSequenceEasyLine, 'red')

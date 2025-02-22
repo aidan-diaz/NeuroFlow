@@ -39,7 +39,6 @@
     <div class="card">
       <div id="recallChartContainer" ></div>
       <div id="activeRecallStatContainer" class="col">
-        <h2>Active Recall Stats</h2>
         <% if(!recallTest.length) {%>
           <h4>No Stats Yet - Take a Test to record progress!</h4>
           <% } %>
@@ -47,6 +46,7 @@
               <p class="recallScoresEasy allScores">
                 <%= recallTest[i].easyScores %>
               </p>
+              <h2>All Time:</h2>
               <h3>High Score (Easy): <span><%= recallTest[i].easyHighScore %></span></h3>
               <p class="recallScoresMedium allScores">
                 <%= recallTest[i].mediumScores %>
@@ -74,7 +74,6 @@
     <div class="card">
       <div id="reactionChartContainer"></div>
       <div id="reactionTestStatContainer" class="col">
-        <h2>Reaction Stats</h2>
         <% if(!reactionTest.length) {%>
           <h4>No Stats Yet - Take a Test to record progress!</h4>
           <% } %>
@@ -82,6 +81,7 @@
               <p class="reactionScores allScores">
                 <%= reactionTest[i].scores %>
               </p>
+              <h2>All Time:</h2>
               <h3>High Score: <span><%= reactionTest[i].highScore %></span></h3>
               <form action="/reactionTests/deleteReactionTestScore/<%= reactionTest[i].id %>?_method=DELETE" method="POST">
                 <button class="deleteReactionScoreButton btn btn-danger btn-lg">Delete Progress</button>
@@ -93,7 +93,6 @@
     <div class="card">
       <div id="numberSequenceChartContainer"></div>
       <div id="numberSequenceStatContainer" class="col">
-        <h2>Number Sequence Stats</h2>
         <% if(!numberSequenceTest.length) {%>
           <h4>No Stats Yet - Take a Test to record progress!</h4>
           <% } %>
@@ -101,6 +100,7 @@
               <p class="numberSequenceScoresEasy allScores">
                 <%= numberSequenceTest[i].easyScores %>
               </p>
+              <h2>All Time:</h2>
               <h3>High Score (Easy): <span><%= numberSequenceTest[i].easyHighScore %></span></h3>
               <p class="numberSequenceScoresMedium allScores">
                 <%= numberSequenceTest[i].mediumScores %>
