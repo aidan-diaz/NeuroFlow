@@ -36,7 +36,10 @@ p {
     font-size: 3.6rem;
 }
 
-.logoutButton,
+.headerButton {
+    font-size: 1.8rem;
+}
+
 .difficultyButton {
     font-size: 2.4rem;
 }

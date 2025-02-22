@@ -23,7 +23,10 @@ h2 {
   font-size: 2.4rem;
 }
 
-.logoutButton,
+.headerButton {
+  font-size: 1.8rem;
+}
+
 .btn-success {
   font-size: 2.4rem;
 }
