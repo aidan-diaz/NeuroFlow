@@ -28,7 +28,6 @@
     </ul>
   </header>
   <main>
-    <!--sample chart for progress-->
     <div>
       <h1><%= user.userName %>'s Progress</h1>
     </div>
@@ -37,86 +36,95 @@
 
 <section class="container text-center">
   <div class="row align-items-start">
-    <div id="recallChartContainer" ></div>
-    <div id="activeRecallStatContainer" class="col">
-      <h2>Active Recall Stats</h2>
-      <% if(!recallTest.length) {%>
-        <h4>No Stats Yet - Take a Test to record progress!</h4>
-        <% } %>
-          <% for(var i=0; i<recallTest.length; i++) {%>
-            <p class="recallScoresEasy allScores">
-              <%= recallTest[i].easyScores %>
-            </p>
-            <h3>High Score (Easy): <span><%= recallTest[i].easyHighScore %></span></h3>
-            <p class="recallScoresMedium allScores">
-              <%= recallTest[i].mediumScores %>
-            </p>
-            <h3>High Score (Medium): <span><%= recallTest[i].mediumHighScore %></span></h3>
-            <p class="recallScoresHard allScores">
-              <%= recallTest[i].hardScores %>
-            </p>
-            <h3>High Score (Hard): <span><%= recallTest[i].hardHighScore %></span></h3>
-            <p class="recallScoresExpert allScores">
-              <%= recallTest[i].expertScores %>
-            </p>
-            <h3>High Score (Expert): <span><%= recallTest[i].expertHighScore %></span></h3>
-            <p class="recallScoresImpossible allScores">
-              <%= recallTest[i].impossibleScores %>
-            </p>
-            <h3>High Score (Impossible): <span><%= recallTest[i].impossibleHighScore %></span></h3>
-            <form action="/recallTests/deleteRecallTestScore/<%= recallTest[i].id %>?_method=DELETE" method="POST">
-              <button class="deleteRecallScoreButton btn btn-danger btn-lg">Delete Progress</button>
-            </form>
-            <% } %>
+    <div class="card">
+      <div id="recallChartContainer" ></div>
+      <div id="activeRecallStatContainer" class="col">
+        <h2>Active Recall Stats</h2>
+        <% if(!recallTest.length) {%>
+          <h4>No Stats Yet - Take a Test to record progress!</h4>
+          <% } %>
+            <% for(var i=0; i<recallTest.length; i++) {%>
+              <p class="recallScoresEasy allScores">
+                <%= recallTest[i].easyScores %>
+              </p>
+              <h3>High Score (Easy): <span><%= recallTest[i].easyHighScore %></span></h3>
+              <p class="recallScoresMedium allScores">
+                <%= recallTest[i].mediumScores %>
+              </p>
+              <h3>High Score (Medium): <span><%= recallTest[i].mediumHighScore %></span></h3>
+              <p class="recallScoresHard allScores">
+                <%= recallTest[i].hardScores %>
+              </p>
+              <h3>High Score (Hard): <span><%= recallTest[i].hardHighScore %></span></h3>
+              <p class="recallScoresExpert allScores">
+                <%= recallTest[i].expertScores %>
+              </p>
+              <h3>High Score (Expert): <span><%= recallTest[i].expertHighScore %></span></h3>
+              <p class="recallScoresImpossible allScores">
+                <%= recallTest[i].impossibleScores %>
+              </p>
+              <h3>High Score (Impossible): <span><%= recallTest[i].impossibleHighScore %></span></h3>
+              <form action="/recallTests/deleteRecallTestScore/<%= recallTest[i].id %>?_method=DELETE" method="POST">
+                <button class="deleteRecallScoreButton btn btn-danger btn-lg">Delete Progress</button>
+              </form>
+              <% } %>
+      </div>
     </div>
-    <div id="reactionChartContainer"></div>
-    <div id="reactionTestStatContainer" class="col">
-      <h2>Reaction Stats</h2>
-      <% if(!reactionTest.length) {%>
-        <h4>No Stats Yet - Take a Test to record progress!</h4>
-        <% } %>
-          <% for(var i=0; i<reactionTest.length; i++) {%>
-            <p class="reactionScores allScores">
-              <%= reactionTest[i].scores %>
-            </p>
-            <h3>High Score: <span><%= reactionTest[i].highScore %></span></h3>
-            <form action="/reactionTests/deleteReactionTestScore/<%= reactionTest[i].id %>?_method=DELETE" method="POST">
-              <button class="deleteReactionScoreButton btn btn-danger btn-lg">Delete Progress</button>
-            </form>
-            <% } %>
+    
+    <div class="card">
+      <div id="reactionChartContainer"></div>
+      <div id="reactionTestStatContainer" class="col">
+        <h2>Reaction Stats</h2>
+        <% if(!reactionTest.length) {%>
+          <h4>No Stats Yet - Take a Test to record progress!</h4>
+          <% } %>
+            <% for(var i=0; i<reactionTest.length; i++) {%>
+              <p class="reactionScores allScores">
+                <%= reactionTest[i].scores %>
+              </p>
+              <h3>High Score: <span><%= reactionTest[i].highScore %></span></h3>
+              <form action="/reactionTests/deleteReactionTestScore/<%= reactionTest[i].id %>?_method=DELETE" method="POST">
+                <button class="deleteReactionScoreButton btn btn-danger btn-lg">Delete Progress</button>
+              </form>
+              <% } %>
+      </div>
     </div>
-    <div id="numberSequenceChartContainer"></div>
-    <div id="numberSequenceStatContainer" class="col">
-      <h2>Number Sequence Stats</h2>
-      <% if(!numberSequenceTest.length) {%>
-        <h4>No Stats Yet - Take a Test to record progress!</h4>
-        <% } %>
-          <% for(var i=0; i<numberSequenceTest.length; i++) {%>
-            <p class="numberSequenceScoresEasy allScores">
-              <%= numberSequenceTest[i].easyScores %>
-            </p>
-            <h3>High Score (Easy): <span><%= numberSequenceTest[i].easyHighScore %></span></h3>
-            <p class="numberSequenceScoresMedium allScores">
-              <%= numberSequenceTest[i].mediumScores %>
-            </p>
-            <h3>High Score (Medium): <span><%= numberSequenceTest[i].mediumHighScore %></span></h3>
-            <p class="numberSequenceScoresHard allScores">
-              <%= numberSequenceTest[i].hardScores %>
-            </p>
-            <h3>High Score (Hard): <span><%= numberSequenceTest[i].hardHighScore %></span></h3>
-            <p class="numberSequenceScoresExpert allScores">
-              <%= numberSequenceTest[i].expertScores %>
-            </p>
-            <h3>High Score (Expert): <span><%= numberSequenceTest[i].expertHighScore %></span></h3>
-            <p class="numberSequenceScoresImpossible allScores">
-              <%= numberSequenceTest[i].impossibleScores %>
-            </p>
-            <h3>High Score (Impossible): <span><%= numberSequenceTest[i].impossibleHighScore %></span></h3>
-            <form action="/numberSequenceTests/deleteNumberSequenceTestScore/<%= numberSequenceTest[i].id %>?_method=DELETE" method="POST">
-              <button class="deleteNumberSequenceScoreButton btn btn-danger btn-lg">Delete Progress</button>
-            </form>
-            <% } %>
+
+    <div class="card">
+      <div id="numberSequenceChartContainer"></div>
+      <div id="numberSequenceStatContainer" class="col">
+        <h2>Number Sequence Stats</h2>
+        <% if(!numberSequenceTest.length) {%>
+          <h4>No Stats Yet - Take a Test to record progress!</h4>
+          <% } %>
+            <% for(var i=0; i<numberSequenceTest.length; i++) {%>
+              <p class="numberSequenceScoresEasy allScores">
+                <%= numberSequenceTest[i].easyScores %>
+              </p>
+              <h3>High Score (Easy): <span><%= numberSequenceTest[i].easyHighScore %></span></h3>
+              <p class="numberSequenceScoresMedium allScores">
+                <%= numberSequenceTest[i].mediumScores %>
+              </p>
+              <h3>High Score (Medium): <span><%= numberSequenceTest[i].mediumHighScore %></span></h3>
+              <p class="numberSequenceScoresHard allScores">
+                <%= numberSequenceTest[i].hardScores %>
+              </p>
+              <h3>High Score (Hard): <span><%= numberSequenceTest[i].hardHighScore %></span></h3>
+              <p class="numberSequenceScoresExpert allScores">
+                <%= numberSequenceTest[i].expertScores %>
+              </p>
+              <h3>High Score (Expert): <span><%= numberSequenceTest[i].expertHighScore %></span></h3>
+              <p class="numberSequenceScoresImpossible allScores">
+                <%= numberSequenceTest[i].impossibleScores %>
+              </p>
+              <h3>High Score (Impossible): <span><%= numberSequenceTest[i].impossibleHighScore %></span></h3>
+              <form action="/numberSequenceTests/deleteNumberSequenceTestScore/<%= numberSequenceTest[i].id %>?_method=DELETE" method="POST">
+                <button class="deleteNumberSequenceScoreButton btn btn-danger btn-lg">Delete Progress</button>
+              </form>
+              <% } %>
+      </div>
     </div>
+
     <div id="legend">
       <h3 id="colorKeyHeader">Color key for Active Recall and Number Sequence Tests</h3>
       <p id="chartTips">*Charts show 10 most recent test attempts along x-axis (1 = most recent, 10 = least recent)</p>
