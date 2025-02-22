@@ -17,7 +17,6 @@ const marginLeft = 40;
           if (response.ok) return response.json()
         })
         .then(data => {
-            console.log(data)
             //GET THE LAST TEN SCORES FOR EACH TEST AND/OR DIFFICULTY
             let lastTenRecallScoresEasy = getScores(data, 'recallTest', 'easyScores')
             let lastTenRecallScoresMedium = getScores(data, 'recallTest', 'mediumScores')
@@ -43,12 +42,14 @@ const marginLeft = 40;
 
 //CONVERT LAST TEN SCORES INTO OBJECTS TO DRAW LINES LATER
 function getScores(data, testType, property) {
-    return data[testType][0][property].slice(-10).map((e, i) => {
+    return data[testType].length ? 
+        data[testType][0][property].slice(-10).map((e, i) => {
         const obj = {}
         obj['x'] = i + 1
         obj['y'] = e
         return obj
     })
+    : []
 }
 
 function defineLine(xAxis, yAxis) {
