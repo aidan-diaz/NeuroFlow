@@ -35,10 +35,10 @@ function defineLine(xAxis, yAxis) {
 //construct x and y for chart
 
 function addXAxis(svg, chartX) {
+    const tickValues = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
     return svg.append("g")
     .attr("transform", `translate(0,${height - marginBottom})`)
-    .call(d3.axisBottom(chartX))
-    
+    .call(d3.axisBottom(chartX).tickFormat((d, i) => tickValues[i])) 
 }
 
 function addYAxis(svg, chartY) {
@@ -84,7 +84,7 @@ const reactionChartX = d3.scaleLinear()
 // Declare the y (vertical position) scale.
 const reactionChartY = d3.scaleLinear()
     .domain([0, 100])
-    .range([height - marginBottom, marginTop]);
+    .range([height - marginBottom, marginTop])
 
 const reactionScoreLine = defineLine(reactionChartX, reactionChartY)
 

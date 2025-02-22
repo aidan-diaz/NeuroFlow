@@ -19,7 +19,7 @@
 
 <body>
   <header>
-    <ul>
+    <ul id="pageLinks">
       <li><a href="/recallTests/getActiveRecallTest">Active Recall Test</a></li>
       <li><a href="/reactionTests/getReactionTest">Reaction Test</a></li>
       <li><a href="/numberSequenceTests/getNumberSequenceTest">Number Sequence Test</a></li>
@@ -116,6 +116,16 @@
               <button class="deleteNumberSequenceScoreButton btn btn-danger btn-lg">Delete Progress</button>
             </form>
             <% } %>
+    </div>
+    <div id="legend">
+      <h3>Color key for Active Recall and Number Sequence Tests</h3>
+      <ul id="colorKey">
+        <li>Easy <span id="red" class="color"></span></li>
+        <li>Medium <span id="black" class="color"></li>
+        <li>Hard <span id="green" class="color"></li>
+        <li>Expert <span id="blue" class="color"></li>
+        <li>Impossible <span id="orange" class="color"></li>
+      </ul>
     </div>
   </div>
 </section>

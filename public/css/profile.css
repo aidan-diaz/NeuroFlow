@@ -60,7 +60,7 @@ header {
   height: 10rem;
 }
 
-ul {
+#pageLinks {
   width: 95%;
   height: 10rem;
   display: flex;
@@ -76,6 +76,39 @@ ul {
 .sampleChart {
   width: 100%;
   height: 100%;
+}
+
+#colorKey {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.color {
+  display: inline-block;
+  height: 2rem;
+  width: 5rem;
+  border: 2px solid black;
+}
+
+#red {
+  background-color: red;
+}
+
+#black {
+  background-color: black;
+}
+
+#green {
+  background-color: green;
+}
+
+#blue {
+  background-color: blue;
+}
+
+#orange {
+  background-color: orange;
 }
 
 /* MEDIA QUERIES */
