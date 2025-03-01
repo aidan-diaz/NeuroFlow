@@ -1,8 +1,8 @@
-![Thumbnail](public/imgs/neuroFlowThumbnail.png)
-
 # NeuroFlow
 
-- NeuroFlow is a full-stack web application that empowers users to improve and maintain their cognitive health through engaging tests and a personalized progress-tracking profile chart.
+![Thumbnail](public/imgs/neuroFlowThumbnail.png)
+
+NeuroFlow is a full-stack web application that empowers users to improve and maintain their cognitive health through engaging tests and a personalized progress-tracking profile chart.
 
 
 [Check out the site!](https://web-production-9bd4.up.railway.app/)
@@ -35,4 +35,3 @@ Tech used:
 
 - improve styling
 - add more cognitive tests
-- 
